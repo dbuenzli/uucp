@@ -44,22 +44,18 @@ let tty_width_hint =
   let gc i = Uucp_gc.general_category (Uchar.unsafe_of_int i) in
   let eaw i = east_asian_width (Uchar.unsafe_of_int i) in
   fun u -> match Uchar.to_int u with
-  (* C0 (without U+0000) or DELETE and C1 is non-sensical. *)
-  |u when 0 < u && u <= 0x001F || 0x007F <= u && u <= 0x009F -> -1
   (* U+0000 is actually safe to (non-)render. *)
   | 0 -> 0
-  (* Soft Hyphen. *)
-  | 0x00AD -> 1
-  (* Line/Paragraph Separator. 1 seems more frequent than 0 and we
-     never saw -1, i.e. correct handling. *)
-  | 0x2028 | 0x2029 -> 1
-  (* Euro-centric fast path: does not intersect branches below. *)
+  (* C0 or DELETE and C1 (general category Cc) is non-sensical. *)
+  |u when u <= 0x001F || 0x007F <= u && u <= 0x009F -> -1
+  (* Euro-centric fast path (blocks ASCII - Modifier Letters).
+     Notably includes one Cf character, U+00AD (Soft hyphen). *)
   | u when u <= 0x02FF -> 1
   (* Non-spacing. *)
   | u when (let c = gc u in c = `Mn || c = `Me || c = `Cf) -> 0
   (* Wide east-asian; intersects non-spacing. *)
   | u when (let w = eaw u in w = `W || w = `F) -> 2
-  (* or else. *)
+  (* or else. Notably includes Zl (U+2028) and Zp (U+2029). *)
   | _ -> 1
 
 (*---------------------------------------------------------------------------
