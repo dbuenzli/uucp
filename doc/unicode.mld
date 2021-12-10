@@ -163,7 +163,7 @@ sequences. Unicode defines two of them, which one to use depends on
 your processing context.
 
 {ul
-{- {e Canonical} equivalence. Equivalent sequences should display and
+{- {e Canonical} equivalence. Equivalent sequences should display
     and be interpreted the same way when printed. For example the
     sequence "B", "Ä" (<U+0042, U+00C4>) is canonically equivalent to
     "B", "A", "¨" (<U+0042, U+0041, U+0308>).}
@@ -200,7 +200,7 @@ them using binary equality. If the normal form is NFD or NFC, binary
 equality will entail canonical equivalence of the sequences. If the
 normal form is NFKC or NFKD equality will entail compatibility
 equivalence of the sequences. Note that normal forms are {b not}
-closed under concatenation: if you concatenate two sequence of scalar
+closed under concatenation: if you concatenate two sequences of scalar
 values you have to renormalize the result.
 
 For more information about normalization, see the
@@ -276,8 +276,8 @@ the OCaml {!Stdlib.Buffer} module since OCaml 4.06.
 
 As mentioned in {!serializing}, each of the 128 US-ASCII characters is
 represented by its own US-ASCII byte representation in UTF-8. So if
-you want to look for an US-ASCII character in an UTF-8 encoded string,
-you can just scan the bytes.  But beware on the nature of your data
+you want to look for a US-ASCII character in a UTF-8 encoded string,
+you can just scan the bytes.  But beware of the nature of your data
 and the algorithm you need to implement. For example to detect spaces
 in the string, looking for the US-ASCII space U+0020 may not be
 sufficient, there are a lot of other space characters like the no
@@ -364,8 +364,8 @@ let char_of_scalar_value s =
 
 {2:ppcp Pretty-printing code points in ASCII}
 
-["U+%04X"] is an OCaml formatting string for printing an US-ASCII
-representation of an Unicode code point according to the standards'
+["U+%04X"] is an OCaml formatting string for printing a US-ASCII
+representation of a Unicode code point according to the standards'
 notational conventions. This is what the {!Fmt.Dump.uchar} formatter
 does for {!Stdlib.Uchar.t} values.
 
@@ -378,7 +378,7 @@ them to/from Unicode so that the client needs only to deal with
 Unicode, the burden of dealing with the encoding mess has to be on the
 library, not the client.
 
-In this case there is no absolute need to depend on an Unicode text
+In this case there is no absolute need to depend on a Unicode text
 data structure, just use {b valid} UTF-8 encoded data as OCaml
 [string]s and the standard library {!Stdlib.Uchar.t} type.
 
