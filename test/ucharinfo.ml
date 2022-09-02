@@ -513,9 +513,9 @@ let uspec =
 
 let doc = "Query Unicode character information"
 let exits =
-  Term.exit_info 1 ~doc:"if the character specification is invalid." ::
-  Term.exit_info 2 ~doc:"if a key doesn't exist." ::
-  Term.default_exits
+  Cmd.Exit.info 1 ~doc:"if the character specification is invalid." ::
+  Cmd.Exit.info 2 ~doc:"if a key doesn't exist." ::
+  Cmd.Exit.defaults
 
 let man = [
   `S Manpage.s_description;
@@ -583,10 +583,12 @@ let man = [
      $(i,http://www.unicode.org/reports/tr44/)"; ]
 
 let ucharinfo =
-  Term.(const ucharinfo $ cmd $ keys $ spec_fmt $ out_fmt $ uspec),
-  Term.info "ucharinfo" ~version:"%%VERSION%%" ~doc ~exits ~man
+  Cmd.v (Cmd.info "ucharinfo" ~version:"%%VERSION%%" ~doc ~exits ~man)
+    Term.(const ucharinfo $ cmd $ keys $ spec_fmt $ out_fmt $ uspec)
 
-let () = Term.(exit_status @@ eval ucharinfo)
+
+let main () = exit (Cmd.eval' ucharinfo)
+let main () = if !Sys.interactive then () else main ()
 
 (*---------------------------------------------------------------------------
    Copyright (c) 2017 The uucp programmers
