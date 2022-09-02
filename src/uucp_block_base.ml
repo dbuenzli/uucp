@@ -17,6 +17,7 @@ type t = [
   | `Arabic
   | `Arabic_Ext_A
   | `Arabic_Ext_B
+  | `Arabic_Ext_C
   | `Arabic_Math
   | `Arabic_PF_A
   | `Arabic_PF_B
@@ -52,6 +53,7 @@ type t = [
   | `CJK_Ext_E
   | `CJK_Ext_F
   | `CJK_Ext_G
+  | `CJK_Ext_H
   | `CJK_Radicals_Sup
   | `CJK_Strokes
   | `CJK_Symbols
@@ -77,10 +79,12 @@ type t = [
   | `Cyrillic_Ext_A
   | `Cyrillic_Ext_B
   | `Cyrillic_Ext_C
+  | `Cyrillic_Ext_D
   | `Cyrillic_Sup
   | `Deseret
   | `Devanagari
   | `Devanagari_Ext
+  | `Devanagari_Ext_A
   | `Diacriticals
   | `Diacriticals_Ext
   | `Diacriticals_For_Symbols
@@ -140,8 +144,10 @@ type t = [
   | `Jamo_Ext_B
   | `Javanese
   | `Kaithi
+  | `Kaktovik_Numerals
   | `Kana_Ext_A
   | `Kana_Ext_B
+  | `Kawi
   | `Kana_Sup
   | `Kanbun
   | `Kangxi
@@ -213,6 +219,7 @@ type t = [
   | `NB (** Non_block *)
   | `NKo
   | `Nabataean
+  | `Nag_Mundari
   | `Nandinagari
   | `New_Tai_Lue
   | `Newa
@@ -338,6 +345,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Arabic -> "Arabic"
   | `Arabic_Ext_A -> "Arabic_Ext_A"
   | `Arabic_Ext_B -> "Arabic_Ext_B"
+  | `Arabic_Ext_C -> "Arabic_Ext_C"
   | `Arabic_Math -> "Arabic_Math"
   | `Arabic_PF_A -> "Arabic_PF_A"
   | `Arabic_PF_B -> "Arabic_PF_B"
@@ -373,6 +381,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `CJK_Ext_E -> "CJK_Ext_E"
   | `CJK_Ext_F -> "CJK_Ext_F"
   | `CJK_Ext_G -> "CJK_Ext_G"
+  | `CJK_Ext_H -> "CJK_Ext_H"
   | `CJK_Radicals_Sup -> "CJK_Radicals_Sup"
   | `CJK_Strokes -> "CJK_Strokes"
   | `CJK_Symbols -> "CJK_Symbols"
@@ -398,10 +407,12 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Cyrillic_Ext_A -> "Cyrillic_Ext_A"
   | `Cyrillic_Ext_B -> "Cyrillic_Ext_B"
   | `Cyrillic_Ext_C -> "Cyrillic_Ext_C"
+  | `Cyrillic_Ext_D -> "Cyrillic_Ext_D"
   | `Cyrillic_Sup -> "Cyrillic_Sup"
   | `Deseret -> "Deseret"
   | `Devanagari -> "Devanagari"
   | `Devanagari_Ext -> "Devanagari_Ext"
+  | `Devanagari_Ext_A -> "Devanagari_Ext_A"
   | `Diacriticals -> "Diacriticals"
   | `Diacriticals_Ext -> "Diacriticals_Ext"
   | `Diacriticals_For_Symbols -> "Diacriticals_For_Symbols"
@@ -463,8 +474,10 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Jamo_Ext_B -> "Jamo_Ext_B"
   | `Javanese -> "Javanese"
   | `Kaithi -> "Kaithi"
+  | `Kaktovik_Numerals -> "Kaktovik_Numerals"
   | `Kana_Ext_A -> "Kana_Ext_A"
   | `Kana_Ext_B -> "Kana_Ext_B"
+  | `Kawi -> "Kawi"
   | `Kana_Sup -> "Kana_Sup"
   | `Kanbun -> "Kanbun"
   | `Kangxi -> "Kangxi"
@@ -537,6 +550,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `NB -> "NB"
   | `NKo -> "NKo"
   | `Nabataean -> "Nabataean"
+  | `Nag_Mundari -> "Nag_Mundari"
   | `Nandinagari -> "Nandinagari"
   | `New_Tai_Lue -> "New_Tai_Lue"
   | `Newa -> "Newa"

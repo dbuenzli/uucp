@@ -86,6 +86,7 @@ module Block : sig
     | `Arabic
     | `Arabic_Ext_A
     | `Arabic_Ext_B
+    | `Arabic_Ext_C
     | `Arabic_Math
     | `Arabic_PF_A
     | `Arabic_PF_B
@@ -121,6 +122,7 @@ module Block : sig
     | `CJK_Ext_E
     | `CJK_Ext_F
     | `CJK_Ext_G
+    | `CJK_Ext_H
     | `CJK_Radicals_Sup
     | `CJK_Strokes
     | `CJK_Symbols
@@ -146,10 +148,12 @@ module Block : sig
     | `Cyrillic_Ext_A
     | `Cyrillic_Ext_B
     | `Cyrillic_Ext_C
+    | `Cyrillic_Ext_D
     | `Cyrillic_Sup
     | `Deseret
     | `Devanagari
     | `Devanagari_Ext
+    | `Devanagari_Ext_A
     | `Diacriticals
     | `Diacriticals_Ext
     | `Diacriticals_For_Symbols
@@ -209,8 +213,10 @@ module Block : sig
     | `Jamo_Ext_B
     | `Javanese
     | `Kaithi
+    | `Kaktovik_Numerals
     | `Kana_Ext_A
     | `Kana_Ext_B
+    | `Kawi
     | `Kana_Sup
     | `Kanbun
     | `Kangxi
@@ -282,6 +288,7 @@ module Block : sig
     | `NB (** Non_block *)
     | `NKo
     | `Nabataean
+    | `Nag_Mundari
     | `Nandinagari
     | `New_Tai_Lue
     | `Newa
@@ -1243,6 +1250,7 @@ module Script : sig
   | `Java
   | `Kali
   | `Kana
+  | `Kawi
   | `Khar
   | `Khmr
   | `Khoj
@@ -1275,6 +1283,7 @@ module Script : sig
   | `Mtei
   | `Mult
   | `Mymr
+  | `Nagm
   | `Nand
   | `Narb
   | `Nbat

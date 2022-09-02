@@ -65,6 +65,7 @@ type t = [
   | `Java
   | `Kali
   | `Kana
+  | `Kawi
   | `Khar
   | `Khmr
   | `Khoj
@@ -97,6 +98,7 @@ type t = [
   | `Mtei
   | `Mult
   | `Mymr
+  | `Nagm
   | `Nand
   | `Narb
   | `Nbat
@@ -232,6 +234,7 @@ let pp ppf s = Format.fprintf ppf "%s" begin match s with
   | `Java -> "Java"
   | `Kali -> "Kali"
   | `Kana -> "Kana"
+  | `Kawi -> "Kawi"
   | `Khar -> "Khar"
   | `Khmr -> "Khmr"
   | `Khoj -> "Khoj"
@@ -264,6 +267,7 @@ let pp ppf s = Format.fprintf ppf "%s" begin match s with
   | `Mtei -> "Mtei"
   | `Mult -> "Mult"
   | `Mymr -> "Mymr"
+  | `Nagm -> "Nagm"
   | `Nand -> "Nand"
   | `Narb -> "Narb"
   | `Nbat -> "Nbat"
