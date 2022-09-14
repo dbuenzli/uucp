@@ -483,7 +483,7 @@ module Break : sig
       on [ppf]. *)
 
   val word : Uchar.t -> word
-  (** [world u] is [u]'s
+  (** [word u] is [u]'s
       {{:http://www.unicode.org/reports/tr44/#Word_Break}word break}
       property. *)
 
