@@ -588,7 +588,7 @@ let ucharinfo =
 
 
 let main () = exit (Cmd.eval' ucharinfo)
-let main () = if !Sys.interactive then () else main ()
+let () = if !Sys.interactive then () else main ()
 
 (*---------------------------------------------------------------------------
    Copyright (c) 2017 The uucp programmers

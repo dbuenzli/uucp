@@ -22,7 +22,7 @@ let uucp_lib =
 let ucharinfo =
   let srcs = Fpath.[`File (v "test/ucharinfo.ml")] in
   let requires = [cmdliner; uutf; uunf; uucp] in
-  B0_ocaml.exe "uncharinfo" ~doc:"The ucharinfo tool" ~srcs ~requires
+  B0_ocaml.exe "ucharinfo" ~doc:"The ucharinfo tool" ~srcs ~requires
 
 (* Tests *)
 
