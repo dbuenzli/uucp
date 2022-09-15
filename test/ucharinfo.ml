@@ -94,7 +94,7 @@ let str_of_spec_fmt = function
 | `UTF_8 -> "UTF-8"
 | `UTF_16BE -> "UTF-16BE"
 | `UTF_16LE -> "UTF-16LE"
-| `Uchar_esc -> "an Unicode character escape"
+| `Uchar_esc -> "a Unicode character escape"
 | `Bytes_esc -> "a byte sequence escape"
 | `Guess -> "a character specification"
 | `By_name -> "a name substring"
