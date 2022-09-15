@@ -25,16 +25,18 @@ instructions and a complete specification of the dependencies.
 
 ## Documentation
 
-Uucp has a [minimal Unicode introduction][intro] and some
-[Unicode OCaml tips][tips].
+The documentation can be consulted [online][doc] or via `odig doc uucp`.
 
-The documentation and API reference is automatically generated from
-the interfaces. It can be consulted [online][doc] or via `odig doc
-uucp`.
+Uucp's documentation also has a [minimal Unicode introduction][intro] and
+some [Unicode OCaml tips][tips].
+
+Questions are welcome but better asked on the [OCaml forum][ocaml-forum] 
+than on the issue tracker.
 
 [doc]: http://erratique.ch/software/uucp/doc/
 [intro]: http://erratique.ch/software/uucp/doc/unicode.html#minimal
 [tips]: http://erratique.ch/software/uucp/doc/unicode.html#tips
+[ocaml-forum]: https://discuss.ocaml.org/
 
 
 ## Sample programs

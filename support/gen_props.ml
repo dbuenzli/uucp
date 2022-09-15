@@ -63,7 +63,7 @@ let process
 let main () =
   let usage = str
     "Usage: %s [OPTION]... [DBFILE]\n\
-     \ Generates data modules from an Unicode character database XML file.\n\
+     \ Generates data modules from a Unicode character database XML file.\n\
      \ DBFILE defaults to support/ucd.xml\n\
      Options:" exec
   in
