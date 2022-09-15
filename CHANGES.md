@@ -1,4 +1,5 @@
-
+v15.0.0 2022-09-15 Zagreb
+-------------------------
 
 - Unicode 15.0.0 support.
 - Tool `ucharinfo`: allow to query more than one character at a time.
