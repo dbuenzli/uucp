@@ -525,7 +525,15 @@ let man = [
       the $(b,-l) option to list them. By default the tool outputs a
       selection of keys for a character. To output all its keys in
       alphabetic order use the $(b,--all) option. To output specific
-      keys use the repeatable $(b,-k) option.";
+      keys use the repeatable $(b,-k) option. Examples:";
+  `Pre "  $(mname) $(b,--all f09F90ab)         \
+        # All keys of UTF-8 byte sequence\n\
+       \  $(mname) $(b,-k utf-8 U+1F42B)       # Escaped UTF-8 for U+1F42B\n\
+       \  $(mname) $(b,-k utf-8 -n -b U+1F42B) # UTF-8 for U+1F42B\n\
+       \  $(mname) $(b,-k name U+1F42B)        # Name of U+1F42B\n\
+       \  $(mname) $(b,-k name '\\\\uD83D\\\\uDC2B') # Idem\n\
+       \  $(mname) $(b,-k name -k age U+1f42B) # Name and age of U+1F42B\n\
+       \  $(mname) $(b,-l)                     # List keys";
   `S "CHARACTER SPECIFICATION";
   `P "The character specification must represent an Unicode scalar
       value, that is a code point in the range U+0000..U+D7FF or
@@ -535,7 +543,7 @@ let man = [
       a single command line argument by adding appropriate shell quotes if
       needed. Then, unless the $(b,--spec-format) option is used the following
       heuristic is applied, in order, to guess the input format:";
-  `I ("1. UTF-X decode.",
+  `I ("1. UTF decode.",
       "If the specification has a non US-ASCII byte, the byte sequence
        is decoded as UTF-8, UTF-16BE or UTF-16LE (in that order)
        to a single Unicode character, taking the first decode that succeeds.");
@@ -566,18 +574,9 @@ let man = [
        \  $(b,F09F90AB)            # Idem\n\
        \  $(b,0xF0 0x9F 0x90 0xAB) # Idem\n\
        \  $(b,\\\\xF0\\\\x9f\\\\x90\\\\xAB)    # Idem";
-  `S Manpage.s_examples;
-  `Pre "  $(mname) $(b,--all f09F90ab)     # \
-          All keys of this UTF-8 byte sequence\n\
-       \  $(mname) $(b,-k utf-8 U+1F42B)       # Escaped UTF-8 for U+1F42B\n\
-       \  $(mname) $(b,-k utf-8 -n -b U+1F42B) # UTF-8 for U+1F42B\n\
-       \  $(mname) $(b,-k name U+1F42B)        # Name of U+1F42B\n\
-       \  $(mname) $(b,-k name '\\\\uD83D\\\\uDC2B')   # Idem\n\
-       \  $(mname) $(b,-k name -k age U+1f42B) # Name and age of U+1F42B\n\
-       \  $(mname) $(b,-l)                     # List keys";
   `S Manpage.s_bugs;
   `P "This program is distributed with the Uucp OCaml library.
-      See $(i,%%PKG_HOMEPAGE%%) for contact information.";
+      See $(i,https://erratique.ch/software/uucp) for contact information.";
   `S "REFERENCES";
   `P "UAX #44 Unicode Character Database.
      $(i,http://www.unicode.org/reports/tr44/)"; ]
