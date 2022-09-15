@@ -1,6 +1,8 @@
 
 
 - Unicode 15.0.0 support.
+- Tool `ucharinfo`: allow to query more than one character at a time.
+- Tool `ucharinfo`: tool allow to search characters by name.
 
 v14.0.0 2021-09-17 Zagreb
 -------------------------

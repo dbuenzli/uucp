@@ -36,6 +36,24 @@ let str_is_ascii s =
   in
   loop s 0
 
+let includes ~affix s =
+  let len_a = String.length affix in
+  let len_s = String.length s in
+  if len_a > len_s then false else
+  let max_idx_a = len_a - 1 in
+  let max_idx_s = len_s - len_a in
+  let rec loop i k =
+    if i > max_idx_s then false else
+    if k > max_idx_a then true else
+    if k > 0 then
+      if String.unsafe_get affix k = String.unsafe_get s (i + k)
+      then loop i (k + 1) else loop (i + 1) 0
+    else
+    if String.unsafe_get affix 0 = String.unsafe_get s i
+    then loop i 1 else loop (i + 1) 0
+    in
+    loop 0 0
+
 (* Data conversion to strings and UTF-X *)
 
 let esc_non_ascii s =
@@ -79,6 +97,7 @@ let str_of_spec_fmt = function
 | `Uchar_esc -> "an Unicode character escape"
 | `Bytes_esc -> "a byte sequence escape"
 | `Guess -> "a character specification"
+| `By_name -> "a name substring"
 
 let uchar_of_utf utf s =
   let fold = match utf with
@@ -182,21 +201,59 @@ let uchar_of_utf_8_bytes_esc s =
   in
   loop s 0
 
+let search_names spec = (* Quadratics :-) *)
+  let names u = Uucp.Name.name u :: (List.map snd (Uucp.Name.name_alias u)) in
+  let match' names spec = List.exists (includes ~affix:spec) names in
+  let rec loop spec acc u =
+    let names = names u in
+    let acc = if match' names spec then u :: acc else acc in
+    if u = Uchar.max then List.rev acc else loop spec acc (Uchar.succ u)
+  in
+  match loop (String.uppercase_ascii spec) [] Uchar.min with
+  | [] -> None
+  | us -> Some us
+
+let singleton = Option.map (fun u -> [u])
+
 let guess_spec s = match str_is_ascii s with
-| false -> try_uchar_of_utfs s
-| true when String.length s = 1 -> Some (Uchar.of_int (Char.code s.[0]))
+| false -> singleton (try_uchar_of_utfs s)
+| true when String.length s = 1 -> Some ([Uchar.of_int (Char.code s.[0])])
 | true ->
     match uchar_of_uchar_esc s with
-    | Some _ as u -> u
-    | None -> uchar_of_utf_8_bytes_esc s
+    | Some _ as u -> singleton u
+    | None ->
+        match uchar_of_utf_8_bytes_esc s with
+        | Some _ as u -> singleton u
+        | None -> search_names s
 
 let parse_spec spec_fmt s = match spec_fmt with
-| `UTF_8 -> uchar_of_utf `UTF_8 s
-| `UTF_16BE -> uchar_of_utf `UTF_16BE s
-| `UTF_16LE -> uchar_of_utf `UTF_16LE s
-| `Uchar_esc -> uchar_of_uchar_esc s
-| `Bytes_esc -> uchar_of_utf_8_bytes_esc s
+| `UTF_8 -> singleton (uchar_of_utf `UTF_8 s)
+| `UTF_16BE -> singleton (uchar_of_utf `UTF_16BE s)
+| `UTF_16LE -> singleton (uchar_of_utf `UTF_16LE s)
+| `Uchar_esc -> singleton (uchar_of_uchar_esc s)
+| `Bytes_esc -> singleton (uchar_of_utf_8_bytes_esc s)
 | `Guess -> guess_spec s
+| `By_name -> search_names s
+
+let parse_specs spec_fmt specs =
+  let rec loop acc = function
+  | [] ->
+      let us = List.concat acc in
+      let module Uset = Set.Make (Uchar) in
+      if us = []
+      then Error (strf "No character matched the specifications.")
+      else Ok (Uset.elements (Uset.of_list us))
+  | s :: ss ->
+      match parse_spec spec_fmt s with
+      | Some us -> loop (us :: acc) ss
+      | None ->
+          match spec_fmt with
+          | `Guess | `By_name -> loop acc ss
+          | spec_fmt ->
+              let fmt = str_of_spec_fmt spec_fmt and sesc = esc_non_ascii s in
+              Error (strf "Could not parse %s from '%s'\n%!" fmt sesc)
+  in
+  loop [] specs
 
 (* Version *)
 
@@ -396,43 +453,48 @@ let output_key out_fmt uchar (k, str) = match out_fmt.no_labels with
     let l = match k with `P k | `N k | `H k -> k in
     Printf.printf "%s: %s\n" l (str out_fmt uchar)
 
-let query_keys keys out_fmt uchar = match get_keys keys with
-| Error _ as e -> e
-| Ok keys -> List.iter (output_key out_fmt uchar) keys; Ok ()
+let query_keys keys out_fmt uchar = List.iter (output_key out_fmt uchar) keys
 
 (* Cmd *)
 
-let ucharinfo cmd keys spec_fmt out_fmt uspec = match cmd with
+let ucharinfo cmd keys spec_fmt out_fmt specs = match cmd with
 | `Unicode_version -> unicode_version (); 0
 | `List_keys -> list_keys (); 0
 | `Query ->
-    match uspec with
-    | None -> log_err "No character specified."; 1
-    | Some uspec ->
-        match parse_spec spec_fmt uspec with
-        | None ->
-            log_err (strf "Could not parse %s from '%s'\n%!"
-                       (str_of_spec_fmt spec_fmt) (esc_non_ascii uspec)); 1
-        | Some uchar ->
-            match query_keys keys out_fmt uchar with
-            | Error e -> log_err e; 2
-            | Ok () -> (); 0
+    match get_keys keys with
+    | Error e -> log_err e; 2
+    | Ok keys ->
+        let uchars = parse_specs spec_fmt specs in
+        match uchars with
+        | Error e -> log_err e; 1
+        | Ok uchars ->
+            let rec loop = function
+            | [] -> assert false
+            | [u] -> query_keys keys out_fmt u; 0
+            | u :: us -> query_keys keys out_fmt u; Printf.printf "\n"; loop us
+            in
+            loop uchars
 
 (* Cmdline interface *)
 
 open Cmdliner
 
 let cmd =
-  let doc = "List available keys." in
-  let list_keys = `List_keys, Arg.info ["l"; "key-list"] ~doc in
-  let doc = "Output supported Unicode version." in
-  let unicode_version = `Unicode_version, Arg.info ["unicode-version"] ~doc in
+  let list_keys =
+    let doc = "List available keys." in
+    `List_keys, Arg.info ["l"; "key-list"] ~doc
+  in
+  let unicode_version =
+    let doc = "Output supported Unicode version." in
+    `Unicode_version, Arg.info ["unicode-version"] ~doc
+  in
   Arg.(value & vflag `Query [unicode_version; list_keys])
 
 let spec_fmt =
   let spec_fmt =
     [ "UTF-8", `UTF_8; "UTF-16BE", `UTF_16BE; "UTF-16LE", `UTF_16LE;
-      "uchar-esc", `Uchar_esc; "bytes-esc", `Bytes_esc; "guess", `Guess ]
+      "uchar-esc", `Uchar_esc; "bytes-esc", `Bytes_esc; "name", `By_name;
+      "guess", `Guess ]
   in
   let doc =
     strf "The character specification format. $(docv) must be one of %s.
@@ -505,11 +567,13 @@ let keys =
   in
   Term.(const choose $ all $ default $ case $ cjk $ emoji $ id $ num $ keys)
 
-let uspec =
-  let doc = "The character specification. See CHARACTER SPECIFICATION
-             for details."
+let uspecs =
+  let doc = "The character specification. See CHARACTER SPECIFICATION \
+             and option $(b,--spec-format) for details. Repeatable. \
+             Information about each character is output in scalar value \
+             order separated by blank lines."
   in
-  Arg.(value & pos 0 (some string) None & info [] ~doc ~docv:"UCHAR")
+  Arg.(value & pos_all string [] & info [] ~doc ~docv:"UCHAR")
 
 let doc = "Query Unicode character information"
 let exits =
@@ -519,24 +583,30 @@ let exits =
 
 let man = [
   `S Manpage.s_description;
-  `P "$(mname) outputs information about an Unicode character specified
+  `P "$(mname) outputs information about Unicode characters specified
       on the command line.";
+  `Pre "  $(mname) $(b,U+1F42B)\n\
+       \  $(mname) $(b,bactrian)\n\
+       \  $(mname) $(b,f09F90ab)  # UTF-8 byte sequence";
   `P "The information to output is selected by specifying keys, use
       the $(b,-l) option to list them. By default the tool outputs a
       selection of keys for a character. To output all its keys in
       alphabetic order use the $(b,--all) option. To output specific
       keys use the repeatable $(b,-k) option. Examples:";
-  `Pre "  $(mname) $(b,--all f09F90ab)         \
-        # All keys of UTF-8 byte sequence\n\
+  `Pre "  $(mname) $(b,--all f09F90ab)         # All keys\n\
        \  $(mname) $(b,-k utf-8 U+1F42B)       # Escaped UTF-8 for U+1F42B\n\
        \  $(mname) $(b,-k utf-8 -n -b U+1F42B) # UTF-8 for U+1F42B\n\
        \  $(mname) $(b,-k name U+1F42B)        # Name of U+1F42B\n\
        \  $(mname) $(b,-k name '\\\\uD83D\\\\uDC2B') # Idem\n\
        \  $(mname) $(b,-k name -k age U+1f42B) # Name and age of U+1F42B\n\
        \  $(mname) $(b,-l)                     # List keys";
+  `S Manpage.s_arguments;
+  `S Manpage.s_options;
+  `S Manpage.s_common_options;
   `S "CHARACTER SPECIFICATION";
-  `P "The character specification must represent an Unicode scalar
-      value, that is a code point in the range U+0000..U+D7FF or
+  `P "The character specification must be either a substring of its
+      Unicode name or represent an \
+      Unicode scalar value, that is a code point in the range U+0000..U+D7FF or
       U+E000..U+10FFFF. $(mname) errors on the textually meaningless range
       U+D800..U+DFFF of surrogate code points.";
   `P "You need to make sure the character specification is passed in
@@ -560,11 +630,15 @@ let man = [
        ((0|\\\\)?x)?hh[ ]*)+ with h denoting a caseless hexadecimal digit,
        the unescaped byte sequence is decoded from UTF-8 to a single Unicode
        character.");
+  `I ("5. Unicode character name.", "Select any character whose
+       Unicode name or name aliases has the specification as a substring. \
+       Matching is caseless.");
   `P "If none of this succeeds the tool errors.";
   `P "For example all the following specifications, appropriately quoted
       for your shell, are acceptable specifications for the Unicode character
       U+1F42B:";
-  `Pre "  $(b,U+1F42B) $(b,u+1F42B) $(b,U1F42B) $(b,u1F42B)\n\
+  `Pre "  $(b,bactrian)\n\
+       \  $(b,U+1F42B) $(b,u+1F42B) $(b,U1F42B) $(b,u1F42B)\n\
        \  $(b,\\\\u1F42B) $(b,\\\\u{1F42B}) $(b,\\\\U{1F42B})\n\
        \  $(b,\\\\uD83D\\\\uDC2B)        \
           # Surrogate escape (e.g. JSON/Java[Script])\n\
@@ -583,7 +657,7 @@ let man = [
 
 let ucharinfo =
   Cmd.v (Cmd.info "ucharinfo" ~version:"%%VERSION%%" ~doc ~exits ~man)
-    Term.(const ucharinfo $ cmd $ keys $ spec_fmt $ out_fmt $ uspec)
+    Term.(const ucharinfo $ cmd $ keys $ spec_fmt $ out_fmt $ uspecs)
 
 
 let main () = exit (Cmd.eval' ucharinfo)
