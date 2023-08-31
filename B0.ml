@@ -59,13 +59,19 @@ let ucharinfo =
 
 (* Tests *)
 
-let test ?(requires = [uucp]) name ~src ~doc =
+let test ?(meta = B0_meta.empty) ?(requires = [uucp]) name ~src ~doc =
   let srcs = Fpath.[`File (v src)] in
-  let meta = B0_meta.(empty |> tag test) in
+  let meta = B0_meta.(meta |> tag test) in
   B0_ocaml.exe name ~doc ~srcs ~meta ~requires
 
 let test' =
-  test "test" ~requires:[uucd; uucp] ~src:"test/test.ml" ~doc:"Test"
+  (* FIXME b0, this is not so good. *)
+  let meta =
+    let scope_dir b u = Fut.return (B0_build.scope_dir b u) in
+    B0_meta.(empty |> add B0_unit.Action.exec_cwd scope_dir)
+  in
+  test "test" ~requires:[uucd; uucp] ~src:"test/test.ml"
+    ~doc:"Test Uucp against the Unicode database." ~meta
 
 let perf =
   test "perf" ~requires:[uucp] ~src:"test/perf.ml" ~doc:"Test performance"

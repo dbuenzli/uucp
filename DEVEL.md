@@ -27,3 +27,18 @@ file by issuing:
 [uucd]: http://erratique.ch/software/uucd
 
 
+# Tests and performance
+
+To check Uucp against the data of the Unicode character database to
+ensure they agree make sure you have a copy of the XML Unicode
+character database in `support/ucd.xml` (use `b0 -- download-ucdxml`
+or specify it on the cli) and run
+
+   b0 -- test
+
+If you are tweaking the datastructures, the performance lookup of Uucp 
+can be tested with: 
+
+  time $(b0 --path -- pref)
+  
+See `b0 -- perf --help` for more options.
