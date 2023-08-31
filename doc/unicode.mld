@@ -316,11 +316,8 @@ For case insensitive equality have a look at the
 
 {2:alphasort Sort strings alphabetically}
 
-The only solution at the moment for collating strings is to use
-{{:https://github.com/yoriyuki/Camomile}Camomile} but be aware that it
-supports only Unicode 3.2 character data so don't be surprised if
-newer scripts don't order correctly.  The official collation data also
-has been significantly tweaked since then.
+String collation can be performed using the
+{{:https://github.com/paurkedal/confero}confero} package.
 
 {2:boundaries Find user-perceived character, word, sentence and line
               boundaries in Unicode text.}
