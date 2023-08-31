@@ -9,7 +9,7 @@ Uucp is distributed under the ISC license. It has no dependency.
 
 Home page: <http://erratique.ch/software/uucp>
 
-[Uniocde character database]: http://www.unicode.org/reports/tr44/
+[Unicode character database]: http://www.unicode.org/reports/tr44/
 
 ## Installation
 
