@@ -9,22 +9,22 @@ let unicode_version = Uucp_version_data.unicode_version
 
 (* Properties *)
 
-module Age = Uucp_age
-module Alpha = Uucp_alpha
-module Break = Uucp_break
-module Block = Uucp_block
-module Case = Uucp_case
-module Cjk = Uucp_cjk
-module Emoji = Uucp_emoji
-module Func = Uucp_func
-module Gc = Uucp_gc
-module Gen = Uucp_gen
-module Hangul = Uucp_hangul
-module Id = Uucp_id
-module Name = Uucp_name
-module Num = Uucp_num
-module Script = Uucp_script
-module White = Uucp_white
+module Age = Uucp__age
+module Alpha = Uucp__alpha
+module Break = Uucp__break
+module Block = Uucp__block
+module Case = Uucp__case
+module Cjk = Uucp__cjk
+module Emoji = Uucp__emoji
+module Func = Uucp__func
+module Gc = Uucp__gc
+module Gen = Uucp__gen
+module Hangul = Uucp__hangul
+module Id = Uucp__id
+module Name = Uucp__name
+module Num = Uucp__num
+module Script = Uucp__script
+module White = Uucp__white
 
 (* Maps. Not part of the public API. *)
 

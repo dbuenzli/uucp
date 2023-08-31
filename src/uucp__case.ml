@@ -13,6 +13,6 @@ let is_case_ignorable u =
 
 (* Case mappings *)
 
-module Map = Uucp_case_map
-module Fold = Uucp_case_fold
-module Nfkc_fold = Uucp_case_nfkc
+module Map = Uucp__case_map
+module Fold = Uucp__case_fold
+module Nfkc_fold = Uucp__case_nfkc

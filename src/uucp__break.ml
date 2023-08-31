@@ -41,7 +41,7 @@ let east_asian_width u =
   Uucp_rmap.get Uucp_break_data.east_asian_width_map (Uchar.to_int u)
 
 let tty_width_hint =
-  let gc i = Uucp_gc.general_category (Uchar.unsafe_of_int i) in
+  let gc i = Uucp__gc.general_category (Uchar.unsafe_of_int i) in
   let eaw i = east_asian_width (Uchar.unsafe_of_int i) in
   fun u -> match Uchar.to_int u with
   (* U+0000 is actually safe to (non-)render. *)
