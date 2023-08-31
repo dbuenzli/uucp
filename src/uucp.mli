@@ -12,8 +12,6 @@
     introduction and OCaml Unicode tips. Individual modules have
     sample code related to the properties.
 
-    {e Unicode version %%UNICODE_VERSION%%}
-
     {3 References}
     {ul
     {- {{:http://www.unicode.org/faq/}The Unicode FAQ.}}

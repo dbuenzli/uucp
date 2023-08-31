@@ -21,7 +21,7 @@ with Sys_error e -> Printf.eprintf "%s\n%!" e; exit 1
 
 let process
     inf use_default age alpha block break case case_map case_fold case_nfkc
-    cjk emoji func gc gen hangul id name num script white
+    cjk emoji func gc gen hangul id name num script version white
   =
   let ucd = (Gen.log "Loading Unicode character database.\n"; ucd_or_die inf)in
   let generate pp f ucd = match f with
@@ -56,6 +56,7 @@ let process
   generate Gen_name.pp_mod name ucd;
   generate Gen_num.pp_mod num ucd;
   generate Gen_script.pp_mod script ucd;
+  generate (Gen.pp_mod Gen.pp_version) version ucd;
   generate Gen_white.pp_mod white ucd;
   ()
 
@@ -92,6 +93,7 @@ let main () =
   let name = ref (`Default "src/uucp_name_data.ml") in
   let num = ref (`Default "src/uucp_num_data.ml") in
   let script = ref (`Default "src/uucp_script_data.ml") in
+  let version = ref (`Default "src/uucp_version_data.ml") in
   let white = ref (`Default "src/uucp_white_data.ml") in
   let set r = Arg.String (fun s -> use_default := false; r := `Set s) in
   let options = [
@@ -113,11 +115,13 @@ let main () =
     "-name", set name, "<FILE> Support for name properties";
     "-num", set num, "<FILE> Support for numeric properties";
     "-script", set script, "<FILE> Support for script properties";
+    "-version", set version, "<FILE> Support for the Unicode version";
     "-white", set white, "<FILE> Support for the white space property"; ]
   in
   Arg.parse (Arg.align options) set_inf usage;
   let inf = match !inf with None -> "support/ucd.xml" | Some inf -> inf in
   process inf !use_default !age !alpha !block !break !case !case_map !case_fold
-    !case_nfkc !cjk !emoji !func !gc !gen !hangul !id !name !num !script !white
+    !case_nfkc !cjk !emoji !func !gc !gen !hangul !id !name !num !script
+    !version !white
 
 let () = main ()

@@ -5,7 +5,7 @@
 
 (* Unicode version *)
 
-let unicode_version = "%%UNICODE_VERSION%%"
+let unicode_version = Uucp_version_data.unicode_version
 
 (* Properties *)
 

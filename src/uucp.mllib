@@ -49,5 +49,6 @@ Uucp_tmap
 Uucp_tmap5bytes
 Uucp_tmapbool
 Uucp_tmapbyte
+Uucp_version_data
 Uucp_white
 Uucp_white_data

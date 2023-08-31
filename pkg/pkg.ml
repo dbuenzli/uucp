@@ -7,14 +7,8 @@ let uutf = Conf.with_pkg "uutf"
 let uunf = Conf.with_pkg "uunf"
 let cmdliner = Conf.with_pkg "cmdliner"
 
-let distrib =
-  (* FIXME OPAMv2, move this to an x-unicode-version field in the opam file. *)
-  let watermarks = ("UNICODE_VERSION", `String "15.0.0") :: Pkg.watermarks in
-  let exclude_paths () = Pkg.exclude_paths () >>| fun ps -> "support" :: ps in
-  Pkg.distrib ~watermarks ~exclude_paths ()
-
 let () =
-  Pkg.describe "uucp" ~distrib @@ fun c ->
+  Pkg.describe "uucp" @@ fun c ->
   let uutf = Conf.value c uutf in
   let uunf = Conf.value c uunf in
   let cmdliner = Conf.value c cmdliner in

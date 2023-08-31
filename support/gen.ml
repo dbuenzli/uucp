@@ -28,6 +28,16 @@ let uchar_iter_ints f =
   in
   loop Uchar.min f
 
+(* Generate the Unicode version *)
+
+let pp_version ppf ucd =
+  let version = match String.split_on_char ' ' ucd.Uucd.description with
+  | [tok] -> tok
+  | [_; tok] -> tok
+  | _ -> ucd.Uucd.description
+  in
+  pp ppf "@[<2>let unicode_version = \"%s\"@]@\n@\n" version
+
 (* Property lookup *)
 
 let ucd_find ucd u p = Uucd.cp_prop ucd u p
@@ -244,7 +254,6 @@ let pp_tmap5byte ppf pname m =
   pp ppf "@[<2>let %s_map : t =@ %a@]@\n@\n" pname
     (Uucp_tmap5bytes.dump_pp pp_v) m;
   ()
-
 
 (* Generate a module *)
 
