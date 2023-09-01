@@ -1,3 +1,9 @@
+
+- Use module aliases for the property modules. Only pay for the
+  modules you use (#2).
+- Use the standard library UTF decoders in the sample code and in
+  `ucharinfo` (#23).
+
 v15.0.0 2022-09-15 Zagreb
 -------------------------
 
