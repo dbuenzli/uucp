@@ -3,14 +3,13 @@ name: "uucp"
 synopsis: "Unicode character properties for OCaml"
 description: """\
 Uucp is an OCaml library providing efficient access to a selection of
-character properties of the [Unicode character database][1].
+character properties of the [Unicode character database].
 
-Uucp is independent from any Unicode text data structure and has no
-dependencies. It is distributed under the ISC license.
+Uucp is distributed under the ISC license. It has no dependency.
 
-[1]: http://www.unicode.org/reports/tr44/
+Home page: <http://erratique.ch/software/uucp>
 
-Home page: http://erratique.ch/software/uucp"""
+[Unicode character database]: http://www.unicode.org/reports/tr44/"""
 maintainer: "Daniel Bünzli <daniel.buenzl i@erratique.ch>"
 authors: "The uucp programmers"
 license: "ISC"
@@ -19,17 +18,16 @@ homepage: "https://erratique.ch/software/uucp"
 doc: "https://erratique.ch/software/uucp/doc/"
 bug-reports: "https://github.com/dbuenzli/uucp/issues"
 depends: [
-  "ocaml" {>= "4.03.0"}
+  "ocaml" {>= "4.14.0"}
   "ocamlfind" {build}
   "ocamlbuild" {build}
   "topkg" {build & >= "1.0.3"}
-  "uucd" {with-test}
+  "b0" {dev & >= "0.0.5"}
+  "uucd" {with-test & dev & >= "15.0.0" & < "16.0.0"}
   "uunf" {with-test}
-  "uutf" {with-test}
 ]
-depopts: ["uutf" "uunf" "cmdliner"]
+depopts: ["uunf" "cmdliner"]
 conflicts: [
-  "uutf" {< "1.0.1"}
   "cmdliner" {< "1.1.0"}
 ]
 build: [
@@ -38,8 +36,6 @@ build: [
   "build"
   "--dev-pkg"
   "%{dev}%"
-  "--with-uutf"
-  "%{uutf:installed}%"
   "--with-uunf"
   "%{uunf:installed}%"
   "--with-cmdliner"

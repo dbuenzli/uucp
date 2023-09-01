@@ -16,7 +16,7 @@ Home page: <http://erratique.ch/software/uucp>
 Uucp can be installed with `opam`:
 
     opam install uucp
-    opam install cmdliner uutf uunf uucp  # For ucharinfo cli tool
+    opam install uucp uunf cmdliner  # For ucharinfo cli tool
 
 If you don't use `opam` consult the [`opam`](opam) file for build
 instructions.

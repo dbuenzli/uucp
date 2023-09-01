@@ -8,7 +8,6 @@ let next_major = let maj, _, _, _ = unicode_version in (maj + 1), 0, 0, None
 
 let uucd = B0_ocaml.libname "uucd"
 let uunf = B0_ocaml.libname "uunf"
-let uutf = B0_ocaml.libname "uutf"
 let cmdliner = B0_ocaml.libname "cmdliner"
 
 let uucp = B0_ocaml.libname "uucp"
@@ -54,7 +53,7 @@ let generate_data =
 
 let ucharinfo =
   let srcs = Fpath.[`File (v "test/ucharinfo.ml")] in
-  let requires = [cmdliner; uutf; uunf; uucp] in
+  let requires = [cmdliner; uunf; uucp] in
   B0_ocaml.exe "ucharinfo" ~doc:"The ucharinfo tool" ~srcs ~requires
 
 (* Tests *)
@@ -80,8 +79,8 @@ let link_test =
   test "link_test" ~requires:[uucp] ~src:"test/link_test.ml" ~doc:"Link test"
 
 let examples =
-  test "examples" ~requires:[uucp; uutf; uunf]
-    ~src:"test/examples.ml" ~doc:"Examples"
+  let doc = "Doc samples" in
+  test "examples" ~requires:[uucp; uunf] ~src:"test/examples.ml" ~doc
 
 (* Cmdlets *)
 
@@ -132,23 +131,20 @@ let default =
       ["unicode"; "text"; "character"; "org:erratique"]
     |> add B0_opam.Meta.build
       {|[["ocaml" "pkg/pkg.ml" "build" "--dev-pkg" "%{dev}%"
-         "--with-uutf" "%{uutf:installed}%"
          "--with-uunf" "%{uunf:installed}%"
          "--with-cmdliner" "%{cmdliner:installed}%" ]]|}
     |> tag B0_opam.tag
-    |> add B0_opam.Meta.depopts [ "uutf", ""; "uunf", ""; "cmdliner", ""]
-    |> add B0_opam.Meta.conflicts [ "uutf", {|< "1.0.1"|};
-                                    "cmdliner", {|< "1.1.0"|}]
+    |> add B0_opam.Meta.depopts [ "uunf", ""; "cmdliner", ""]
+    |> add B0_opam.Meta.conflicts [ "cmdliner", {|< "1.1.0"|}]
     |> add B0_opam.Meta.depends
-      [ "ocaml", {|>= "4.03.0"|};
+      [ "ocaml", {|>= "4.14.0"|};
         "ocamlfind", {|build|};
         "ocamlbuild", {|build|};
         "topkg", {|build & >= "1.0.3"|};
         "b0", {|dev & >= "0.0.5" |};
         "uucd", Fmt.str {|with-test dev & >= "%s" & < "%s"|}
           (String.of_version unicode_version) (String.of_version next_major);
-        "uunf", {|with-test|};
-        "uutf", {|with-test|} ]
+        "uunf", {|with-test|} ]
     |> add B0_opam.Meta.file_addendum
       [ `Field ("post-messages", `L (true, [
             `S "If the build fails with \"ocamlopt.opt got signal and \

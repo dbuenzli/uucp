@@ -68,9 +68,9 @@ let esc_non_ascii s =
 let uchars_to_utf_bytes utf uchars =
   let b = Buffer.create 255 in
   let add_utf = match utf with
-  | `UTF_8 -> Uutf.Buffer.add_utf_8
-  | `UTF_16BE -> Uutf.Buffer.add_utf_16be
-  | `UTF_16LE -> Uutf.Buffer.add_utf_16le
+  | `UTF_8 -> Buffer.add_utf_8_uchar
+  | `UTF_16BE -> Buffer.add_utf_16be_uchar
+  | `UTF_16LE -> Buffer.add_utf_16le_uchar
   in
   List.iter (add_utf b) uchars; Buffer.contents b
 
@@ -100,14 +100,16 @@ let str_of_spec_fmt = function
 | `By_name -> "a name substring"
 
 let uchar_of_utf utf s =
-  let fold = match utf with
-  | `UTF_8 -> Uutf.String.fold_utf_8
-  | `UTF_16BE -> Uutf.String.fold_utf_16be
-  | `UTF_16LE -> Uutf.String.fold_utf_16le
+  let get_utf = match utf with
+  | `UTF_8 -> String.get_utf_8_uchar
+  | `UTF_16BE -> String.get_utf_16be_uchar
+  | `UTF_16LE -> String.get_utf_16le_uchar
   in
-  match fold (fun acc _ decode -> decode :: acc) [] s with
-  | [ `Uchar u ] -> Some u
-  | _ -> None
+  let dec = get_utf s 0 in
+  if Uchar.utf_decode_is_valid dec &&
+     Uchar.utf_decode_length dec = String.length s
+  then Some (Uchar.utf_decode_uchar dec)
+  else None
 
 let try_uchar_of_utfs s =
   let rec try_decs s = function

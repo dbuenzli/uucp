@@ -42,33 +42,34 @@ val is_case_ignorable : Uchar.t -> bool
     These character mapping functions return [`Self]
     whenever a character maps to itself. *)
 
-
 module Map = Uucp__case_map
 module Fold = Uucp__case_fold
 module Nfkc_fold = Uucp__case_nfkc
 
 (** {1:caseexamples Examples}
 
-    These examples use {!Uutf} to fold over the characters of UTF-8
-    encoded OCaml strings and to UTF-8 encode mapped characters in
-    an OCaml {!Buffer.t} value.
+    All these examples replace invalid UTF-8 decodes by an {!Uchar.rep}.
 
     {2:caseconversion Default case conversion on UTF-8 strings}
 
     The value [casemap_utf_8 cmap s] is the UTF-8 encoded string
-    resulting from applying the character map [cmap] to every character
-    of the UTF-8 encoded string [s].
+    resulting from applying the character map [cmap] to every
+    character of the UTF-8 encoded string [s].
 
 {[
 let cmap_utf_8 cmap s =
-  let b = Buffer.create (String.length s * 2) in
-  let rec add_map _ _ u =
-    let u = match u with `Malformed _ -> Uutf.u_rep | `Uchar u -> u in
-    match cmap u with
-    | `Self -> Uutf.Buffer.add_utf_8 b u
-    | `Uchars us -> List.iter (Uutf.Buffer.add_utf_8 b) us
+  let rec loop buf s i max =
+    if i > max then Buffer.contents buf else
+    let dec = String.get_utf_8_uchar s i in
+    let u = Uchar.utf_decode_uchar dec in
+    begin match cmap u with
+    | `Self -> Buffer.add_utf_8_uchar buf u
+    | `Uchars us -> List.iter (Buffer.add_utf_8_uchar buf) us
+    end;
+    loop buf s (i + Uchar.utf_decode_length dec) max
   in
-  Uutf.String.fold_utf_8 add_map () s; Buffer.contents b
+  let buf = Buffer.create (String.length s * 2) in
+  loop buf s 0 (String.length s - 1)
 ]}
 
     Using the function [cmap_utf_8], Unicode's default case
@@ -96,12 +97,12 @@ let uppercase_utf_8 s = cmap_utf_8 Uucp.Case.Map.to_upper s
 
 {[
 let canonical_caseless_key s =
-  let b = Buffer.create (String.length s * 2) in
+  let buf = Buffer.create (String.length s * 3) in
   let to_nfd_and_utf_8 =
     let n = Uunf.create `NFD in
     let rec add v = match Uunf.add n v with
     | `Await | `End -> ()
-    | `Uchar u -> Uutf.Buffer.add_utf_8 b u; add `Await
+    | `Uchar u -> Buffer.add_utf_8_uchar buf u; add `Await
     in
     add
   in
@@ -118,14 +119,13 @@ let canonical_caseless_key s =
     in
     add
   in
-  let add_uchar _ _ = function
-  | `Malformed  _ -> add (`Uchar Uutf.u_rep)
-  | `Uchar _ as u -> add u
+  let rec loop buf s i max =
+    if i > max then (add `End; to_nfd_and_utf_8 `End; Buffer.contents buf) else
+    let dec = String.get_utf_8_uchar s i in
+    add (`Uchar (Uchar.utf_decode_uchar dec));
+    loop buf s (i + Uchar.utf_decode_length dec) max
   in
-  Uutf.String.fold_utf_8 add_uchar () s;
-  add `End;
-  to_nfd_and_utf_8 `End;
-  Buffer.contents b
+  loop buf s 0 (String.length s - 1)
 
 let canonical_caseless_eq s0 s1 =
   canonical_caseless_key s0 = canonical_caseless_key s1
@@ -138,23 +138,23 @@ let canonical_caseless_eq s0 s1 =
 
 {[
 let id_caseless_key s =
-  let b = Buffer.create (String.length s * 3) in
-  let n = Uunf.create `NFD in
-  let rec add v = match Uunf.add n v with
+  let rec add buf normalizer v = match Uunf.add normalizer v with
   | `Await | `End -> ()
   | `Uchar u ->
-      begin match Uucp.Case.Nfkc_fold.fold u with
-      | `Self -> Uutf.Buffer.add_utf_8 b u; add `Await
-      | `Uchars us -> List.iter (Uutf.Buffer.add_utf_8 b) us; add `Await
-      end
+      match Uucp.Case.Nfkc_fold.fold u with
+      | `Self -> Buffer.add_utf_8_uchar buf u; add buf normalizer `Await
+      | `Uchars us ->
+          List.iter (Buffer.add_utf_8_uchar buf) us; add buf normalizer `Await
   in
-  let add_uchar _ _ = function
-  | `Malformed  _ -> add (`Uchar Uutf.u_rep)
-  | `Uchar _ as u -> add u
+  let rec loop buf s i max normalizer =
+    if i > max then (add buf normalizer `End; Buffer.contents buf) else
+    let dec = String.get_utf_8_uchar s i in
+    add buf normalizer (`Uchar (Uchar.utf_decode_uchar dec));
+    loop buf s (i + Uchar.utf_decode_length dec) max normalizer
   in
-  Uutf.String.fold_utf_8 add_uchar () s;
-  add `End;
-  Buffer.contents b
+  let buf = Buffer.create (String.length s * 3) in
+  let normalizer = Uunf.create `NFD in
+  loop buf s 0 (String.length s - 1) normalizer
 
 let id_caseless_eq s0 s1 = id_caseless_key s0 = id_caseless_key s1
 ]}

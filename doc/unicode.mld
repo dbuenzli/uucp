@@ -268,12 +268,11 @@ UTF-8 are useful to remember:
 {2:utf_decoding UTF encoding and decoding support}
 
 UTF decoding and validity checking is available in the OCaml standard
-library {{!Stdlib.String.utf}[String]} and {{!Stdlib.Bytes.utf}[Bytes]}
-modules since OCaml 4.14.
+library {{!Stdlib.String.utf}[String]} and
+{{!Stdlib.Bytes.utf}[Bytes]} modules since OCaml 4.14.
 
 UTF encoding is available both in the {{!Stdlib.Bytes.utf}[Bytes]}
-(since 4.14) and {{!Stdlib.Buffer}[Buffer]} module (since
-4.06).
+(since 4.14) and {{!Stdlib.Buffer}[Buffer]} module (since 4.06).
 
 If you need this functionality prior to 4.14 the third-party {!Uutf}
 module can be used.
