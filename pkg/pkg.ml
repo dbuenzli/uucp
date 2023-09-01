@@ -14,6 +14,9 @@ let uucp_api =
     "Uucp__block";
     "Uucp__break";
     "Uucp__case";
+    "Uucp__case_fold";
+    "Uucp__case_map";
+    "Uucp__case_nfkc";
     "Uucp__cjk";
     "Uucp__emoji";
     "Uucp__func";

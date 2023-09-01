@@ -3,14 +3,13 @@
    SPDX-License-Identifier: ISC
   ---------------------------------------------------------------------------*)
 
-
 (** Case properties, mappings and foldings.
 
     These properties can implement Unicode's default case detection,
     case conversion and caseless equality over Unicode text, see the
     {{!Case.caseexamples}examples}.
 
-    {3 References}
+    {b References.}
     {ul
     {- {{:http://unicode.org/faq/casemap_charprop.html#casemap}
         The Unicode case mapping FAQ.}}
