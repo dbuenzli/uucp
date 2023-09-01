@@ -63,6 +63,7 @@ type t = [
   | `CJK_Ext_F
   | `CJK_Ext_G
   | `CJK_Ext_H
+  | `CJK_Ext_I
   | `CJK_Radicals_Sup
   | `CJK_Strokes
   | `CJK_Symbols

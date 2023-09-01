@@ -33,14 +33,15 @@ val numeric_type : Uchar.t -> numeric_type
 
 (** {1:numvalueprop Numeric value} *)
 
-type numeric_value = [ `Frac of int * int | `NaN | `Num of int64 ]
+type numeric_value =
+  [ `NaN | `Nums of [`Frac of int * int | `Num of int64 ] list ]
 (** The type for numeric values. *)
 
 val pp_numeric_value : Format.formatter -> numeric_value -> unit
 (** [pp_numeric_value ppf n] prints an unspecified representation of
       [n] on [ppf]. *)
 
-val numeric_value : Uchar.t -> [ `Frac of int * int | `NaN | `Num of int64 ]
+val numeric_value : Uchar.t -> numeric_value
 (** [numeric_type u] is [u]'s
     {{:http://www.unicode.org/reports/tr44/#Numeric_Value}
     Numeric_Value} property. *)

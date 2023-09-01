@@ -1,9 +1,15 @@
 
+- Unicode 15.1.0 support.
 - Use module aliases for the property modules. Only pay for the
   modules you use (#2).
 - Use the standard library UTF decoders in the sample code and in
   `ucharinfo` (#23).
-
+- The `Num.numeric_value` had to be changed to accomodate for the
+  data. It now returns either NaN or a list of numbers. This is due to
+  the interpretation of U+5146 and U+79ED which is locale dependent
+  and thus can represent multiple values. In all other cases you
+  should get singelton lists so far.
+  
 v15.0.0 2022-09-15 Zagreb
 -------------------------
 

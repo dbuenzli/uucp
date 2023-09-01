@@ -24,10 +24,10 @@
 (** {1:line_break Line break} *)
 
 type line =
-  [ `AI | `AL | `B2 | `BA | `BB | `BK | `CB | `CJ | `CL | `CM | `CP
-  | `CR | `EX | `EB | `EM | `GL | `H2 | `H3 | `HL | `HY | `ID | `IN
-  | `IS | `JL | `JT | `JV | `LF | `NL | `NS | `NU | `OP | `PO | `PR
-  | `QU | `RI | `SA | `SG | `SP | `SY | `WJ | `XX | `ZW | `ZWJ ]
+  [ `AI | `AK | `AL | `AP | `AS | `B2 | `BA | `BB | `BK | `CB | `CJ | `CL
+  | `CM | `CP | `CR | `EX | `EB | `EM | `GL | `H2 | `H3 | `HL | `HY | `ID
+  | `IN | `IS | `JL | `JT | `JV | `LF | `NL | `NS | `NU | `OP | `PO | `PR
+  | `QU | `RI | `SA | `SG | `SP | `SY | `VF | `VI | `WJ | `XX | `ZW | `ZWJ ]
 (** The type for line breaks. *)
 
 val pp_line : Format.formatter -> line -> unit

@@ -1,7 +1,7 @@
 open B0_kit.V000
 open Result.Syntax
 
-let unicode_version = 15, 0, 0, None (* Adjust on new releases *)
+let unicode_version = 15, 1, 0, None (* Adjust on new releases *)
 let next_major = let maj, _, _, _ = unicode_version in (maj + 1), 0, 0, None
 
 (* OCaml library names *)
@@ -117,6 +117,8 @@ let download_ucdxml =
 (* Packs *)
 
 let default =
+  let unicode_version = String.of_version unicode_version in
+  let next_major = String.of_version next_major in
   let meta =
     let open B0_meta in
     empty
@@ -135,7 +137,9 @@ let default =
          "--with-cmdliner" "%{cmdliner:installed}%" ]]|}
     |> tag B0_opam.tag
     |> add B0_opam.Meta.depopts [ "uunf", ""; "cmdliner", ""]
-    |> add B0_opam.Meta.conflicts [ "cmdliner", {|< "1.1.0"|}]
+    |> add B0_opam.Meta.conflicts
+      [ "uunf", Fmt.str {|< "%s" | >= "%s" |} unicode_version next_major;
+        "cmdliner", {|< "1.1.0"|} ]
     |> add B0_opam.Meta.depends
       [ "ocaml", {|>= "4.14.0"|};
         "ocamlfind", {|build|};
@@ -143,7 +147,7 @@ let default =
         "topkg", {|build & >= "1.0.3"|};
         "b0", {|dev & >= "0.0.5" |};
         "uucd", Fmt.str {|with-test dev & >= "%s" & < "%s"|}
-          (String.of_version unicode_version) (String.of_version next_major);
+          unicode_version next_major;
         "uunf", {|with-test|} ]
     |> add B0_opam.Meta.file_addendum
       [ `Field ("post-messages", `L (true, [

@@ -6,37 +6,39 @@
 (* Line break *)
 
 type line =
-  [ `AI | `AL | `B2 | `BA | `BB | `BK | `CB | `CJ | `CL | `CM | `CP
-  | `CR | `EX | `EB | `EM | `GL | `H2 | `H3 | `HL | `HY | `ID | `IN
-  | `IS | `JL | `JT | `JV | `LF | `NL | `NS | `NU | `OP | `PO | `PR
-  | `QU | `RI | `SA | `SG | `SP | `SY | `WJ | `XX | `ZW | `ZWJ ]
+  [ `AI | `AK | `AL | `AP | `AS | `B2 | `BA | `BB | `BK | `CB | `CJ | `CL
+  | `CM | `CP | `CR | `EX | `EB | `EM | `GL | `H2 | `H3 | `HL | `HY | `ID
+  | `IN | `IS | `JL | `JT | `JV | `LF | `NL | `NS | `NU | `OP | `PO | `PR
+  | `QU | `RI | `SA | `SG | `SP | `SY | `VF | `VI | `WJ | `XX | `ZW | `ZWJ ]
 
 let line_of_byte : line array =
-  [| `AI; `AL; `B2; `BA; `BB; `BK; `CB; `CJ; `CL; `CM; `CP; `CR; `EX;
-     `EB; `EM; `GL; `H2; `H3; `HL; `HY; `ID; `IN; `IS; `JL; `JT; `JV;
-     `LF; `NL; `NS; `NU; `OP; `PO; `PR; `QU; `RI; `SA; `SG; `SP; `SY;
-     `WJ; `XX; `ZW; `ZWJ |]
+  [| `AI; `AK; `AL; `AP; `AS; `B2; `BA; `BB; `BK; `CB; `CJ; `CL;
+     `CM; `CP; `CR; `EX; `EB; `EM; `GL; `H2; `H3; `HL; `HY; `ID;
+     `IN; `IS; `JL; `JT; `JV; `LF; `NL; `NS; `NU; `OP; `PO; `PR;
+     `QU; `RI; `SA; `SG; `SP; `SY; `VF; `VI; `WJ; `XX; `ZW; `ZWJ |]
 
 let line_max = Array.length line_of_byte - 1
 
 let line_to_byte = function
-| `AI -> 0 | `AL -> 1 | `B2 -> 2 | `BA -> 3 | `BB -> 4 | `BK -> 5 | `CB -> 6
-| `CJ -> 7 | `CL -> 8 | `CM -> 9 | `CP -> 10 | `CR -> 11 | `EX -> 12
-| `EB -> 13 | `EM -> 14 | `GL -> 15 | `H2 -> 16 | `H3 -> 17 | `HL -> 18
-| `HY -> 19 | `ID -> 20 | `IN -> 21 | `IS -> 22 | `JL -> 23 | `JT -> 24
-| `JV -> 25 | `LF -> 26 | `NL -> 27 | `NS -> 28 | `NU -> 29 | `OP -> 30
-| `PO -> 31 | `PR -> 32 | `QU -> 33 | `RI -> 34 | `SA -> 35 | `SG -> 36
-| `SP -> 37 | `SY -> 38 | `WJ -> 39 | `XX -> 40 | `ZW -> 41 | `ZWJ -> 42
+| `AI -> 0 | `AK -> 1 | `AL -> 2 | `AP -> 3 | `AS -> 4 | `B2 -> 5
+| `BA -> 6 | `BB -> 7 | `BK -> 8 | `CB -> 9 | `CJ -> 10 | `CL -> 11
+| `CM -> 12 | `CP -> 13 | `CR -> 14 | `EX -> 15 | `EB -> 16 | `EM -> 17
+| `GL -> 18 | `H2 -> 19 | `H3 -> 20 | `HL -> 21 | `HY -> 22 | `ID -> 23
+| `IN -> 24 | `IS -> 25 | `JL -> 26 | `JT -> 27 | `JV -> 28 | `LF -> 29
+| `NL -> 30 | `NS -> 31 | `NU -> 32 | `OP -> 33 | `PO -> 34 | `PR -> 35
+| `QU -> 36 | `RI -> 37 | `SA -> 38 | `SG -> 39 | `SP -> 40 | `SY -> 41
+| `VF -> 42 | `VI -> 43 | `WJ -> 44 | `XX -> 45 | `ZW -> 46 | `ZWJ -> 47
 
 let pp_line ppf v = Format.fprintf ppf "%s" begin match v with
-  | `AI -> "AI" | `AL -> "AL" | `B2 -> "B2" | `BA -> "BA" | `BB -> "BB"
-  | `BK -> "BK" | `CB -> "CB" | `CJ -> "CJ" | `CL -> "CL" | `CM -> "CM"
-  | `CP -> "CP" | `CR -> "CR" | `EX -> "EX" | `EB -> "EB" | `EM -> "EM"
-  | `GL -> "GL" | `H2 -> "H2" | `H3 -> "H3" | `HL -> "HL" | `HY -> "HY"
-  | `ID -> "ID" | `IN -> "IN" | `IS -> "IS" | `JL -> "JL" | `JT -> "JT"
-  | `JV -> "JV" | `LF -> "LF" | `NL -> "NL" | `NS -> "NS" | `NU -> "NU"
-  | `OP -> "OP" | `PO -> "PO" | `PR -> "PR" | `QU -> "QU" | `RI -> "RI"
-  | `SA -> "SA" | `SG -> "SG" | `SP -> "SP" | `SY -> "SY" | `WJ -> "WJ"
+  | `AI -> "AI" | `AK -> "AK" | `AL -> "AL" | `AP -> "AP" | `AS -> "AS"
+  | `B2 -> "B2" | `BA -> "BA" | `BB -> "BB" | `BK -> "BK" | `CB -> "CB"
+  | `CJ -> "CJ" | `CL -> "CL" | `CM -> "CM" | `CP -> "CP" | `CR -> "CR"
+  | `EX -> "EX" | `EB -> "EB" | `EM -> "EM" | `GL -> "GL" | `H2 -> "H2"
+  | `H3 -> "H3" | `HL -> "HL" | `HY -> "HY" | `ID -> "ID" | `IN -> "IN"
+  | `IS -> "IS" | `JL -> "JL" | `JT -> "JT" | `JV -> "JV" | `LF -> "LF"
+  | `NL -> "NL" | `NS -> "NS" | `NU -> "NU" | `OP -> "OP" | `PO -> "PO"
+  | `PR -> "PR" | `QU -> "QU" | `RI -> "RI" | `SA -> "SA" | `SG -> "SG"
+  | `SP -> "SP" | `SY -> "SY" | `VF -> "VF" | `VI -> "VI" | `WJ -> "WJ"
   | `XX -> "XX" | `ZW -> "ZW" | `ZWJ -> "ZWJ"
   end
 
