@@ -33,6 +33,18 @@ val is_xid_continue : Uchar.t -> bool
     {{:http://www.unicode.org/reports/tr44/#XID_Continue}XID_Continue}
     property. *)
 
+(** {1:mathprops Mathematical compatibility notation profile} *)
+
+val is_id_compat_math_start : Uchar.t -> bool
+(** [is_id_compat_math_start u] is [true] if [u] has then
+    {{:https://www.unicode.org/reports/tr44/#ID_Compat_Math_Start}
+    ID_Compat_Math_Start} property. *)
+
+val is_id_compat_math_continue : Uchar.t -> bool
+(** [is_id_compat_math_continue u] is [true] if [u] has then
+    {{:https://www.unicode.org/reports/tr44/#ID_Compat_Math_Continue}
+    ID_Compat_Math_Continue} property. *)
+
 (** {1:patprops Pattern syntax properties} *)
 
 val is_pattern_syntax : Uchar.t -> bool

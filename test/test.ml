@@ -171,6 +171,10 @@ let assert_id ucd =
   prop "is_id_continue" Uucd.id_continue Uucp.Id.is_id_continue;
   prop "is_xid_start" Uucd.xid_start Uucp.Id.is_xid_start;
   prop "is_xid_continue" Uucd.xid_continue Uucp.Id.is_xid_continue;
+  prop "is_id_compat_math_start"
+    Uucd.id_compat_math_start Uucp.Id.is_id_compat_math_start;
+  prop "is_id_compat_math_continue"
+    Uucd.id_compat_math_continue Uucp.Id.is_id_compat_math_continue;
   prop "is_pattern_syntax" Uucd.pattern_syntax Uucp.Id.is_pattern_syntax;
   prop "is_pattern_white_space" Uucd.pattern_white_space
     Uucp.Id.is_pattern_white_space;

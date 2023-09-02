@@ -370,6 +370,8 @@ let all_keys = [
   `P "ID_Continue", str_bool Uucp.Id.is_id_continue;
   `P "XID_Start", str_bool Uucp.Id.is_xid_start;
   `P "XID_Continue", str_bool Uucp.Id.is_xid_continue;
+  `P "ID_Compat_Math_Start", str_bool Uucp.Id.is_id_compat_math_start;
+  `P "ID_Compat_Math_Continue", str_bool Uucp.Id.is_id_compat_math_continue;
   `P "Pattern_Syntax", str_bool Uucp.Id.is_pattern_syntax;
   `P "Pattern_White_Space", str_bool Uucp.Id.is_pattern_white_space;
   (* Name *)

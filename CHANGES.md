@@ -13,6 +13,8 @@
 - Rename `Uucd.Cjk.ids_tri_op` to `Uccd.Cjk.ids_trinary_operator`.
 - Add `Uucd.Cjk.ids_unary_operator`, support for the new `IDS_Unary_Operator`
   property.
+- Add `Uucd.Id.is_id_compat_math_{start,continue}`, support for the new
+  `ID_Compat_Math_{Start,Continue}` properties.
 
 v15.0.0 2022-09-15 Zagreb
 -------------------------
