@@ -22,8 +22,8 @@ let pp_map_prop prop pname ppf ucd =
 
 let pp_props ppf ucd =
   pp_map_prop Uucd.nfkc_casefold "nfkc_fold_map" ppf ucd;
-  let prop = Gen.pp_prop_tmapbool_ucd ppf ucd in
-  prop Uucd.changes_when_nfkc_casefolded "changes_when_casefolded";
+(*  let prop = Gen.pp_prop_tmapbool_ucd ppf ucd in
+  prop Uucd.changes_when_nfkc_casefolded "changes_when_casefolded"; *)
   ()
 
 let pp_mod ppf ucd = Gen.pp_mod pp_props ppf ucd
