@@ -4,7 +4,7 @@ true : bin_annot, safe_string
 <src> : include
 <src/**> : no_alias_deps
 <support> : include
-<support/**> : package(uucd)
+<support/**> : package(uucd unix)
 
 <test> : include
 <test/test.{ml,mli,byte,native}> : package(uucd)

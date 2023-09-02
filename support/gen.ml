@@ -257,13 +257,15 @@ let pp_tmap5byte ppf pname m =
 
 (* Generate a module *)
 
+let year = (Unix.gmtime (Unix.gettimeofday ())).Unix.tm_year + 1900
+
 let pp_mod pp_mod ppf m =
   pp ppf
 "\
 (*---------------------------------------------------------------------------
-   Copyright (c) 2020 The uucp programmers. All rights reserved.
+   Copyright (c) %d The uucp programmers. All rights reserved.
    SPDX-License-Identifier: ISC
   ---------------------------------------------------------------------------*)
 
 (* WARNING do not edit. This file was automatically generated. *)
-@\n@[%a@]@\n" pp_mod m
+@\n@[%a@]@\n" year pp_mod m
