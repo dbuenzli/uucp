@@ -98,6 +98,8 @@ let assert_case ucd =
   map "Map.to_title" Uucd.titlecase_mapping Uucp.Case.Map.to_title;
   map "Fold.fold" Uucd.case_folding Uucp.Case.Fold.fold;
   map "Nfkc_fold.fold" Uucd.nfkc_casefold Uucp.Case.Nfkc_fold.fold;
+  map "Nfkc_simple_fold.fold" Uucd.nfkc_simple_casefold
+    Uucp.Case.Nfkc_simple_fold.fold;
   ()
 
 let assert_cjk ucd =

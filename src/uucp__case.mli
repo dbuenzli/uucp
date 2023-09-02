@@ -45,6 +45,7 @@ val is_case_ignorable : Uchar.t -> bool
 module Map = Uucp__case_map
 module Fold = Uucp__case_fold
 module Nfkc_fold = Uucp__case_nfkc
+module Nfkc_simple_fold = Uucp__case_nfkc_simple
 
 (** {1:caseexamples Examples}
 

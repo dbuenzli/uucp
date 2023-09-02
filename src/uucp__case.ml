@@ -16,3 +16,4 @@ let is_case_ignorable u =
 module Map = Uucp__case_map
 module Fold = Uucp__case_fold
 module Nfkc_fold = Uucp__case_nfkc
+module Nfkc_simple_fold = Uucp__case_nfkc_simple

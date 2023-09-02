@@ -15,6 +15,8 @@
   property.
 - Add `Uucd.Id.is_id_compat_math_{start,continue}`, support for the new
   `ID_Compat_Math_{Start,Continue}` properties.
+- Add `Uucd.Case.Nfkc_simple_fold.fold`, support for the new 
+  `NFKC_Simple_Casefold` property.
 
 v15.0.0 2022-09-15 Zagreb
 -------------------------

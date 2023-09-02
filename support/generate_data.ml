@@ -21,7 +21,8 @@ with Sys_error e -> Printf.eprintf "%s\n%!" e; exit 1
 
 let process
     inf use_default age alpha block break case case_map case_fold case_nfkc
-    cjk emoji func gc gen hangul id name num script version white
+    case_nfkc_simple cjk emoji func gc gen hangul id name num script version
+    white
   =
   let ucd = (Gen.log "Loading Unicode character database.\n"; ucd_or_die inf)in
   let generate pp f ucd = match f with
@@ -46,6 +47,7 @@ let process
   generate Gen_case_map.pp_mod case_map ucd;
   generate Gen_case_fold.pp_mod case_fold ucd;
   generate Gen_case_nfkc.pp_mod case_nfkc ucd;
+  generate Gen_case_nfkc_simple.pp_mod case_nfkc_simple ucd;
   generate Gen_cjk.pp_mod cjk ucd;
   generate Gen_emoji.pp_mod emoji ucd;
   generate Gen_func.pp_mod func ucd;
@@ -83,6 +85,7 @@ let main () =
   let case_map = ref (`Default "src/uucp_case_map_data.ml") in
   let case_fold = ref (`Default "src/uucp_case_fold_data.ml") in
   let case_nfkc = ref (`Default "src/uucp_case_nfkc_data.ml") in
+  let case_nfkc_simple = ref (`Default "src/uucp_case_nfkc_simple_data.ml") in
   let cjk = ref (`Default "src/uucp_cjk_data.ml") in
   let emoji = ref (`Default "src/uucp_emoji_data.ml") in
   let func = ref (`Default "src/uucp_func_data.ml") in
@@ -105,6 +108,8 @@ let main () =
     "-case-map", set case_map, "<FILE> Support for case mappings";
     "-case-fold", set case_fold, "<FILE> Support for case folding";
     "-case-nfkc", set case_nfkc, "<FILE> Support for NFKC case folding";
+    "-case-nfkc-simple", set case_nfkc_simple,
+                         "<FILE> Support for NFKC simple case folding";
     "-cjk", set cjk, "<FILE> Support for CJK properties";
     "-emoji", set emoji, "<FILE> Support for emoji props";
     "-func", set func, "<FILE> Support for function and graph props";
@@ -121,7 +126,7 @@ let main () =
   Arg.parse (Arg.align options) set_inf usage;
   let inf = match !inf with None -> "support/ucd.xml" | Some inf -> inf in
   process inf !use_default !age !alpha !block !break !case !case_map !case_fold
-    !case_nfkc !cjk !emoji !func !gc !gen !hangul !id !name !num !script
-    !version !white
+    !case_nfkc !case_nfkc_simple !cjk !emoji !func !gc !gen !hangul !id !name
+    !num !script !version !white
 
 let () = main ()

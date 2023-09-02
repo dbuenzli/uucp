@@ -329,6 +329,7 @@ let all_keys = [
   `P "Titlecase_Mapping", str_case_map Uucp.Case.Map.to_title;
   `P "Case_Folding", str_case_map Uucp.Case.Fold.fold;
   `P "NFKC_Casefold", str_case_map Uucp.Case.Nfkc_fold.fold;
+  `P "NFKC_Simple_Casefold", str_case_map Uucp.Case.Nfkc_simple_fold.fold;
   (* CJK *)
   `P "Ideographic", str_bool Uucp.Cjk.is_ideographic;
   `P "IDS_Unary_Operator", str_bool Uucp.Cjk.is_ids_unary_operator;

@@ -17,6 +17,8 @@ Uucp__case_map
 Uucp_case_map_data
 Uucp__case_nfkc
 Uucp_case_nfkc_data
+Uucp__case_nfkc_simple
+Uucp_case_nfkc_simple_data
 Uucp__cjk
 Uucp_cjk_data
 Uucp_cmap
