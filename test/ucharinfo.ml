@@ -331,8 +331,9 @@ let all_keys = [
   `P "NFKC_Casefold", str_case_map Uucp.Case.Nfkc_fold.fold;
   (* CJK *)
   `P "Ideographic", str_bool Uucp.Cjk.is_ideographic;
-  `P "IDS_Binary_Operator", str_bool Uucp.Cjk.is_ids_bin_op;
-  `P "IDS_Trinary_Operator", str_bool Uucp.Cjk.is_ids_tri_op;
+  `P "IDS_Unary_Operator", str_bool Uucp.Cjk.is_ids_unary_operator;
+  `P "IDS_Binary_Operator", str_bool Uucp.Cjk.is_ids_binary_operator;
+  `P "IDS_Trinary_Operator", str_bool Uucp.Cjk.is_ids_trinary_operator;
   `P "Radical", str_bool Uucp.Cjk.is_radical;
   `P "Unified_Ideograph", str_bool Uucp.Cjk.is_unified_ideograph;
   (* Emoji *)

@@ -9,7 +9,11 @@
   the interpretation of U+5146 and U+79ED which is locale dependent
   and thus can represent multiple values. In all other cases you
   should get singelton lists so far.
-  
+- Rename `Uucd.Cjk.ids_bin_op` to `Uucd.Cjk.ids_binary_operator`.
+- Rename `Uucd.Cjk.ids_tri_op` to `Uccd.Cjk.ids_trinary_operator`.
+- Add `Uucd.Cjk.ids_unary_operator`, support for the new `IDS_Unary_Operator`
+  property.
+
 v15.0.0 2022-09-15 Zagreb
 -------------------------
 

@@ -6,11 +6,14 @@
 let is_ideographic u =
   Uucp_tmapbool.get Uucp_cjk_data.ideographic_map (Uchar.to_int u)
 
-let is_ids_bin_op u =
-  Uucp_tmapbool.get Uucp_cjk_data.ids_bin_op_map (Uchar.to_int u)
+let is_ids_unary_operator u =
+  Uucp_tmapbool.get Uucp_cjk_data.ids_unary_operator_map (Uchar.to_int u)
 
-let is_ids_tri_op u =
-  Uucp_tmapbool.get Uucp_cjk_data.ids_tri_op_map (Uchar.to_int u)
+let is_ids_binary_operator u =
+  Uucp_tmapbool.get Uucp_cjk_data.ids_binary_operator_map (Uchar.to_int u)
+
+let is_ids_trinary_operator u =
+  Uucp_tmapbool.get Uucp_cjk_data.ids_trinary_operator_map (Uchar.to_int u)
 
 let is_radical u =
   Uucp_tmapbool.get Uucp_cjk_data.radical_map (Uchar.to_int u)

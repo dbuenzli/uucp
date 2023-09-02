@@ -6,8 +6,9 @@
 let pp_props ppf ucd =
   let prop = Gen.pp_prop_tmapbool_ucd ppf ucd in
   prop Uucd.ideographic "ideographic";
-  prop Uucd.ids_binary_operator "ids_bin_op";
-  prop Uucd.ids_trinary_operator "ids_tri_op";
+  prop Uucd.ids_unary_operator "ids_unary_operator";
+  prop Uucd.ids_binary_operator "ids_binary_operator";
+  prop Uucd.ids_trinary_operator "ids_trinary_operator";
   prop Uucd.radical "radical";
   prop Uucd.unified_ideograph "unified_ideograph";
   ()

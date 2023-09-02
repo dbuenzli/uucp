@@ -8,24 +8,29 @@
     {b References.}
     {ul
     {- {{:http://www.unicode.org/faq/han_cjk.html}
-    The Unicode Chinese and Japanese FAQ.}}
+        The Unicode Chinese and Japanese FAQ.}}
     {- {{:http://www.unicode.org/faq/korean.html}
-    The Unicode Korean FAQ.}}} *)
+        The Unicode Korean FAQ.}}} *)
 
 (**  {1:cjkprops CJK properties} *)
 
 val is_ideographic : Uchar.t -> bool
 (** [is_ideographic u] is [true] if [u] has the
-      {{:http://www.unicode.org/reports/tr44/#Ideographic}Ideographic}
-      property. *)
+    {{:http://www.unicode.org/reports/tr44/#Ideographic}Ideographic}
+    property. *)
 
-val is_ids_bin_op : Uchar.t -> bool
-(** [is_ids_bin_op u] is [true] if [u] has the
-      {{:http://www.unicode.org/reports/tr44/#IDS_Binary_Operator}
-      IDS_Binary_Operator} property. *)
+val is_ids_unary_operator : Uchar.t -> bool
+(** [is_ids_unary_operator u] is [true] if [u] has the
+    {{:http://www.unicode.org/reports/tr44/#IDS_Unary_Operator}
+    IDS_Binary_Operator} property. *)
 
-val is_ids_tri_op : Uchar.t -> bool
-(** [is_ids_tri_op u] is [true] if [u] has the
+val is_ids_binary_operator : Uchar.t -> bool
+(** [is_ids_binary_operator u] is [true] if [u] has the
+    {{:http://www.unicode.org/reports/tr44/#IDS_Binary_Operator}
+    IDS_Binary_Operator} property. *)
+
+val is_ids_trinary_operator : Uchar.t -> bool
+(** [is_ids_trinary_operator u] is [true] if [u] has the
     {{:http://www.unicode.org/reports/tr44/#IDS_Trinary_Operator}
     IDS_Trinary_Operator} property. *)
 

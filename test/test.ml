@@ -103,8 +103,12 @@ let assert_case ucd =
 let assert_cjk ucd =
   let prop fname ucd_p p = prop ucd "Uucd.Cjk" fname (ucd_get ucd_p) p in
   prop "ideographic" Uucd.ideographic Uucp.Cjk.is_ideographic;
-  prop "ids_bin_op" Uucd.ids_binary_operator Uucp.Cjk.is_ids_bin_op;
-  prop "ids_tri_op" Uucd.ids_trinary_operator Uucp.Cjk.is_ids_tri_op;
+  prop "ids_unary_operator"
+    Uucd.ids_unary_operator Uucp.Cjk.is_ids_unary_operator;
+  prop "ids_binary_operator"
+    Uucd.ids_binary_operator Uucp.Cjk.is_ids_binary_operator;
+  prop "ids_trinary_operator"
+    Uucd.ids_trinary_operator Uucp.Cjk.is_ids_trinary_operator;
   prop "radical" Uucd.radical Uucp.Cjk.is_radical;
   prop "unified_ideograph" Uucd.unified_ideograph Uucp.Cjk.is_unified_ideograph;
   ()
