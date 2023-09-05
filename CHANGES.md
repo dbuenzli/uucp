@@ -17,6 +17,8 @@
   `ID_Compat_Math_{Start,Continue}` properties.
 - Add `Uucd.Case.Nfkc_simple_fold.fold`, support for the new 
   `NFKC_Simple_Casefold` property.
+- Add `Uucd.Break.indic_conjunct_break`, support for the new 
+  `Indic_Conjunct_Break` property.
 
 v15.0.0 2022-09-15 Zagreb
 -------------------------

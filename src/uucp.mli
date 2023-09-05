@@ -91,8 +91,6 @@ module White = Uucp__white
        {{:http://www.unicode.org/reports/tr44/#Joining_Group}Joining_Group},
        {{:http://www.unicode.org/reports/tr44/#Joining_Type}Joining_Type},
        {{:http://www.unicode.org/reports/tr44/#Vertical_Orientation}Vertical_Orientation},
-       {{:http://www.unicode.org/reports/tr44/#Indic_Conjuct_Break}
-       Indic_Conjuct_Break},
        {{:http://www.unicode.org/reports/tr44/#Indic_Syllabic_Category}
        Indic_Syllabic_Category},
        {{:http://www.unicode.org/reports/tr44/#Indic_Positional_Category}

@@ -318,6 +318,8 @@ let all_keys = [
     str Uucp.Break.(pp_grapheme_cluster, grapheme_cluster);
   `P "Word_Break", str Uucp.Break.(pp_word, word);
   `P "Sentence_Break", str Uucp.Break.(pp_sentence, sentence);
+  `P "Indic_Conjunct_Break",
+     str Uucp.Break.(pp_indic_conjunct_break, indic_conjunct_break);
   `P "East_Asian_Width", str Uucp.Break.(pp_east_asian_width, east_asian_width);
   (* Case *)
   `P "Lowercase", str_bool Uucp.Case.is_lower;

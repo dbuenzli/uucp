@@ -63,8 +63,7 @@ type word =
 (** The type for word breaks. *)
 
 val pp_word : Format.formatter -> word -> unit
-(** [pp_grapheme_cluster ppf g] prints an unspecified representation of [g]
-      on [ppf]. *)
+(** [pp_word ppf b] prints an unspecified representation of [b] on [ppf]. *)
 
 val word : Uchar.t -> word
 (** [word u] is [u]'s
@@ -79,13 +78,26 @@ type sentence =
 (** The type for sentence breaks. *)
 
 val pp_sentence : Format.formatter -> sentence -> unit
-(** [pp_grapheme_cluster ppf g] prints an unspecified representation of [g]
-    on [ppf]. *)
+(** [pp_sentence ppf b] prints an unspecified representation of [b] on [ppf]. *)
 
 val sentence : Uchar.t -> sentence
 (** [sentence u] is [u]'s
     {{:http://www.unicode.org/reports/tr44/#Sentence_Break}sentence break}
     property. *)
+
+(** {1:indic_conjunct_break Indic conjunct break} *)
+
+type indic_conjunct_break = [ `Consonant | `Extend | `Linker | `None ]
+(** The type for Indic Conjunct Break. *)
+
+val pp_indic_conjunct_break : Format.formatter -> indic_conjunct_break -> unit
+(** [pp_indic_conjunct_break ppf b] prints an unspecified representation of [b]
+    on [ppf]. *)
+
+val indic_conjunct_break : Uchar.t -> indic_conjunct_break
+(** [indic_conjunct_break u] is [u]'s
+    {{:http://www.unicode.org/reports/tr44/#Indic_Conjunct_Break}
+    Indic conjunct break} property. *)
 
 (** {1:east_asian_width East Asian width} *)
 
@@ -98,8 +110,8 @@ val pp_east_asian_width : Format.formatter -> east_asian_width -> unit
 
 val east_asian_width : Uchar.t -> east_asian_width
 (** [east_asian_width u] is [u]'s
-    {{:http://www.unicode.org/reports/tr44/#East_Asian_Width}East Asian
-    width} property. *)
+    {{:http://www.unicode.org/reports/tr44/#East_Asian_Width}East
+    Asian width} property. *)
 
 (** {1:terminal_width Terminal width} *)
 
@@ -240,4 +252,16 @@ module Low : sig
   val sentence_of_int : sentence array
   (** [sentence_of_int.(i)] is the sentence break property value
       corresponding to [i]. *)
+
+  val indic_conjunct_break : Uchar.t -> int
+  (** [indic_conjunct_break u] is an integer that can be used with
+      {!indic_conjunct_break_of_int}. *)
+
+  val indic_conjunct_break_max : int
+  (** [indic_conjunct_break_max] is the maximal value returned by
+      {!val-indic_conjunct_break_of_int}. *)
+
+  val indic_conjunct_break_of_int : indic_conjunct_break array
+  (** [indic_conjunct_break.(i)] is the Indic conjunct break property
+      value corresponding to [i]. *)
 end

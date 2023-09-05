@@ -115,6 +115,24 @@ let pp_sentence ppf v = Format.fprintf ppf "%s" begin match v with
   | `SE -> "SE" | `SP -> "SP" | `ST -> "ST" | `UP -> "UP" | `XX -> "XX"
   end
 
+(* Indic conjunct break *)
+
+type indic_conjunct_break =
+  [ `Consonant | `Extend | `Linker | `None ]
+
+let indic_conjunct_break_of_byte : indic_conjunct_break array =
+  [| `Consonant; `Extend; `Linker; `None |]
+
+let indic_conjunct_break_max = Array.length indic_conjunct_break_of_byte - 1
+
+let indic_conjunct_break_to_byte = function
+| `Consonant -> 0 | `Extend -> 1 | `Linker -> 2 | `None -> 3
+
+let pp_indic_conjunct_break ppf v = Format.fprintf ppf "%s" begin match v with
+  | `Consonant -> "Consonant" | `Extend -> "Extend" | `Linker -> "Linker"
+  | `None -> "None"
+  end
+
 (* East Asian width *)
 
 type east_asian_width = [ `A | `F | `H | `N | `Na | `W ]

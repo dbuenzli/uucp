@@ -78,6 +78,8 @@ let assert_break ucd =
     Uucp.Break.grapheme_cluster;
   prop "word" Uucd.word_break Uucp.Break.word;
   prop "sentence" Uucd.sentence_break Uucp.Break.sentence;
+  prop "indic_conjunct_break"
+    Uucd.indic_conjunct_break Uucp.Break.indic_conjunct_break;
   ()
 
 let assert_case ucd =
