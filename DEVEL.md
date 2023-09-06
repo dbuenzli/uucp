@@ -22,7 +22,7 @@ You can now proceed to generate the `src/uunf_data.ml` and update the opam file
 file by issuing:
 
     b0 -- generate-data
-    b0 -- .opam.file > opam
+    b0 -- .opam file > opam
 
 [uucd]: http://erratique.ch/software/uucd
 
@@ -32,13 +32,13 @@ file by issuing:
 To check Uucp against the data of the Unicode character database to
 ensure they agree make sure you have a copy of the XML Unicode
 character database in `support/ucd.xml` (use `b0 -- download-ucdxml`
-or specify it on the cli) and run
+or specify it on the cli) and run:
 
-   b0 -- test
+    b0 -- test
 
 If you are tweaking the datastructures, the performance lookup of Uucp 
 can be tested with: 
 
-  time $(b0 --path -- pref)
+    time $(b0 --path -- pref)
   
 See `b0 -- perf --help` for more options.
