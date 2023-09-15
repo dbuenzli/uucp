@@ -1,5 +1,8 @@
+v15.1.0 2023-09-15 Zagreb
+-------------------------
 
 - Unicode 15.1.0 support.
+- Require OCaml 4.14.0.
 - Use module aliases for the property modules. Only pay for the
   modules you use (#2).
 - Use the standard library UTF decoders in the sample code and in
