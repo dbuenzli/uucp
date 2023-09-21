@@ -3,11 +3,13 @@
    SPDX-License-Identifier: ISC
   ---------------------------------------------------------------------------*)
 
+open B0_testing
+
 (* Tests the properties against the XML Unicode character database. *)
 
 let str = Format.asprintf
 let exec = Filename.basename Sys.executable_name
-let log fmt = Format.eprintf (fmt ^^ "%!")
+
 
 let uchar_dump ppf u = Format.fprintf ppf "U+%04X" (Uchar.to_int u)
 
@@ -15,7 +17,7 @@ let uchar_dump ppf u = Format.fprintf ppf "U+%04X" (Uchar.to_int u)
 
 let load_ucd inf =
   try
-    log "Loading Unicode character database.@\n";
+    Test.log "Loading Unicode character database.";
     let inf = match inf with None -> "support/ucd.xml" | Some inf -> inf in
     let ic = if inf = "-" then stdin else open_in inf in
     let d = Uucd.decoder (`Channel ic) in
@@ -23,9 +25,8 @@ let load_ucd inf =
     | `Ok db -> db
     | `Error e ->
         let (l0, c0), (l1, c1) = Uucd.decoded_range d in
-        log "%s:%d.%d-%d.%d: %s@\n" inf l0 c0 l1 c1 e;
-        exit 1
-  with Sys_error e -> log "%s@\n" e; exit 1
+        Test.failstop "%s:%d.%d-%d.%d: %s" inf l0 c0 l1 c1 e;
+  with Sys_error e -> Test.failstop "%s" e
 
 let ucd_get p ucd u = match Uucd.cp_prop ucd (Uchar.to_int u) p with
 | None -> invalid_arg (str "no property for %a" uchar_dump u)
@@ -34,11 +35,11 @@ let ucd_get p ucd u = match Uucd.cp_prop ucd (Uchar.to_int u) p with
 (* Assert properties *)
 
 let prop ucd mname fname ucd_get prop =
+  Test.test (str "%s.%s" mname fname) @@ fun () ->
   let do_assert u =
     if ucd_get ucd u = prop u then () else
     failwith (str "assertion failure on %a" uchar_dump u)
   in
-  log "Asserting %s.%s@\n" mname fname;
   for u = 0 to 0xD7FF do do_assert (Uchar.of_int u) done;
   for u = 0xE000 to 0x10FFFF do do_assert (Uchar.of_int u) done;
   ()
@@ -226,6 +227,7 @@ let assert_white ucd =
   ()
 
 let test inf mods =
+  Test.main @@ fun () ->
   let do_assert m = mods = [] || List.mem m mods in
   let ucd = load_ucd inf in
   if do_assert `Age    then assert_age ucd;
@@ -244,7 +246,6 @@ let test inf mods =
   if do_assert `Num    then assert_num ucd;
   if do_assert `Script then assert_script ucd;
   if do_assert `White  then assert_white ucd;
-  log "Done.@\n";
   ()
 
 let main () =
@@ -283,4 +284,4 @@ let main () =
   Arg.parse (Arg.align options) set_inf usage;
   test !inf !mods
 
-let () = main ()
+let () = if !Sys.interactive then () else exit (main ())

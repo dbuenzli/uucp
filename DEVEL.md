@@ -34,11 +34,11 @@ ensure they agree make sure you have a copy of the XML Unicode
 character database in `support/ucd.xml` (use `b0 -- download-ucdxml`
 or specify it on the cli) and run:
 
-    b0 -- test
+    b0 test
 
 If you are tweaking the datastructures, the performance lookup of Uucp 
 can be tested with: 
 
-    time $(b0 --path -- pref)
+    time $(b0 --path -- perf)
   
 See `b0 -- perf --help` for more options.
