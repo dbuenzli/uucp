@@ -1,5 +1,8 @@
 
 - Unicode 16.0.0 support.
+- Fix larger than needed size constant in implementation 
+  of boolean trie maps. Thanks to John Tristan for the 
+  report (#26).
 
 v15.1.0 2023-09-15 Zagreb
 -------------------------

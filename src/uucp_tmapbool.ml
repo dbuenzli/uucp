@@ -17,7 +17,7 @@ let l1_shift = 8
 let l1_mask = 0xF
 let l1_size = 0xF + 1
 let l2_mask = 0xFF
-let l2_size = 0xFF + 1 / 8
+let l2_size = (0xFF + 1) / 8
 
 let create default = { default; l0 = Array.make l0_size nil }
 
