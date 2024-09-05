@@ -107,6 +107,7 @@ type t = [
   | `Early_Dynastic_Cuneiform
   | `Egyptian_Hieroglyph_Format_Controls
   | `Egyptian_Hieroglyphs
+  | `Egyptian_Hieroglyphs_Ext_A
   | `Elbasan
   | `Elymaic
   | `Emoticons
@@ -119,6 +120,7 @@ type t = [
   | `Ethiopic_Ext_A
   | `Ethiopic_Ext_B
   | `Ethiopic_Sup
+  | `Garay
   | `Geometric_Shapes
   | `Geometric_Shapes_Ext
   | `Georgian
@@ -133,6 +135,7 @@ type t = [
   | `Gujarati
   | `Gunjala_Gondi
   | `Gurmukhi
+  | `Gurung_Khema
   | `Half_And_Full_Forms
   | `Half_Marks
   | `Hangul
@@ -171,6 +174,7 @@ type t = [
   | `Khmer_Symbols
   | `Khojki
   | `Khudawadi
+  | `Kirat_Rai
   | `Lao
   | `Latin_1_Sup
   | `Latin_Ext_A
@@ -226,6 +230,7 @@ type t = [
   | `Myanmar
   | `Myanmar_Ext_A
   | `Myanmar_Ext_B
+  | `Myanmar_Ext_C
   | `NB (** Non_block *)
   | `NKo
   | `Nabataean
@@ -239,6 +244,7 @@ type t = [
   | `OCR
   | `Ogham
   | `Ol_Chiki
+  | `Ol_Onal
   | `Old_Hungarian
   | `Old_Italic
   | `Old_North_Arabian
@@ -284,6 +290,7 @@ type t = [
   | `Specials
   | `Sundanese
   | `Sundanese_Sup
+  | `Sunuwar
   | `Sup_Arrows_A
   | `Sup_Arrows_B
   | `Sup_Arrows_C
@@ -297,6 +304,7 @@ type t = [
   | `Syloti_Nagri
   | `Symbols_And_Pictographs_Ext_A
   | `Symbols_For_Legacy_Computing
+  | `Symbols_For_Legacy_Computing_Sup
   | `Syriac
   | `Syriac_Sup
   | `Tagalog
@@ -319,8 +327,10 @@ type t = [
   | `Tibetan
   | `Tifinagh
   | `Tirhuta
+  | `Todhri
   | `Toto
   | `Transport_And_Map
+  | `Tulu_Tigalari
   | `UCAS
   | `UCAS_Ext
   | `UCAS_Ext_A

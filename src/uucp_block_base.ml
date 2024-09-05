@@ -98,6 +98,7 @@ type t = [
   | `Early_Dynastic_Cuneiform
   | `Egyptian_Hieroglyph_Format_Controls
   | `Egyptian_Hieroglyphs
+  | `Egyptian_Hieroglyphs_Ext_A
   | `Elbasan
   | `Elymaic
   | `Emoticons
@@ -110,6 +111,7 @@ type t = [
   | `Ethiopic_Ext_A
   | `Ethiopic_Ext_B
   | `Ethiopic_Sup
+  | `Garay
   | `Geometric_Shapes
   | `Geometric_Shapes_Ext
   | `Georgian
@@ -124,6 +126,7 @@ type t = [
   | `Gujarati
   | `Gunjala_Gondi
   | `Gurmukhi
+  | `Gurung_Khema
   | `Half_And_Full_Forms
   | `Half_Marks
   | `Hangul
@@ -162,6 +165,7 @@ type t = [
   | `Khmer_Symbols
   | `Khojki
   | `Khudawadi
+  | `Kirat_Rai
   | `Lao
   | `Latin_1_Sup
   | `Latin_Ext_A
@@ -217,6 +221,7 @@ type t = [
   | `Myanmar
   | `Myanmar_Ext_A
   | `Myanmar_Ext_B
+  | `Myanmar_Ext_C
   | `NB (** Non_block *)
   | `NKo
   | `Nabataean
@@ -230,6 +235,7 @@ type t = [
   | `OCR
   | `Ogham
   | `Ol_Chiki
+  | `Ol_Onal
   | `Old_Hungarian
   | `Old_Italic
   | `Old_North_Arabian
@@ -275,6 +281,7 @@ type t = [
   | `Specials
   | `Sundanese
   | `Sundanese_Sup
+  | `Sunuwar
   | `Sup_Arrows_A
   | `Sup_Arrows_B
   | `Sup_Arrows_C
@@ -288,6 +295,7 @@ type t = [
   | `Syloti_Nagri
   | `Symbols_And_Pictographs_Ext_A
   | `Symbols_For_Legacy_Computing
+  | `Symbols_For_Legacy_Computing_Sup
   | `Syriac
   | `Syriac_Sup
   | `Tagalog
@@ -310,8 +318,10 @@ type t = [
   | `Tibetan
   | `Tifinagh
   | `Tirhuta
+  | `Todhri
   | `Toto
   | `Transport_And_Map
+  | `Tulu_Tigalari
   | `UCAS
   | `UCAS_Ext
   | `UCAS_Ext_A
@@ -427,6 +437,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Early_Dynastic_Cuneiform -> "Early_Dynastic_Cuneiform"
   | `Egyptian_Hieroglyph_Format_Controls -> "Egyptian_Hieroglyph_Format_Controls"
   | `Egyptian_Hieroglyphs -> "Egyptian_Hieroglyphs"
+  | `Egyptian_Hieroglyphs_Ext_A -> "Egyptian_Hieroglyphs_Ext_A"
   | `Elbasan -> "Elbasan"
   | `Elymaic -> "Elymaic"
   | `Emoticons -> "Emoticons"
@@ -439,6 +450,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Ethiopic_Ext_A -> "Ethiopic_Ext_A"
   | `Ethiopic_Ext_B -> "Ethiopic_Ext_B"
   | `Ethiopic_Sup -> "Ethiopic_Sup"
+  | `Garay -> "Garay"
   | `Geometric_Shapes -> "Geometric_Shapes"
   | `Geometric_Shapes_Ext -> "Geometric_Shapes_Ext"
   | `Georgian -> "Georgian"
@@ -453,6 +465,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Gujarati -> "Gujarati"
   | `Gunjala_Gondi -> "Gunjala_Gondi"
   | `Gurmukhi -> "Gurmukhi"
+  | `Gurung_Khema -> "Gurung_Khema"
   | `Half_And_Full_Forms -> "Half_And_Full_Forms"
   | `Half_Marks -> "Half_Marks"
   | `Hangul -> "Hangul"
@@ -493,6 +506,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Khmer_Symbols -> "Khmer_Symbols"
   | `Khojki -> "Khojki"
   | `Khudawadi -> "Khudawadi"
+  | `Kirat_Rai -> "Kirat_Rai"
   | `Lao -> "Lao"
   | `Latin_1_Sup -> "Latin_1_Sup"
   | `Latin_Ext_A -> "Latin_Ext_A"
@@ -549,6 +563,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Myanmar -> "Myanmar"
   | `Myanmar_Ext_A -> "Myanmar_Ext_A"
   | `Myanmar_Ext_B -> "Myanmar_Ext_B"
+  | `Myanmar_Ext_C -> "Myanmar_Ext_C"
   | `NB -> "NB"
   | `NKo -> "NKo"
   | `Nabataean -> "Nabataean"
@@ -562,6 +577,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `OCR -> "OCR"
   | `Ogham -> "Ogham"
   | `Ol_Chiki -> "Ol_Chiki"
+  | `Ol_Onal -> "Ol_Onal"
   | `Old_Hungarian -> "Old_Hungarian"
   | `Old_Italic -> "Old_Italic"
   | `Old_North_Arabian -> "Old_North_Arabian"
@@ -607,6 +623,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Specials -> "Specials"
   | `Sundanese -> "Sundanese"
   | `Sundanese_Sup -> "Sundanese_Sup"
+  | `Sunuwar -> "Sunuwar"
   | `Sup_Arrows_A -> "Sup_Arrows_A"
   | `Sup_Arrows_B -> "Sup_Arrows_B"
   | `Sup_Arrows_C -> "Sup_Arrows_C"
@@ -616,6 +633,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Sup_Punctuation -> "Sup_Punctuation"
   | `Sup_Symbols_And_Pictographs -> "Sup_Symbols_And_Pictographs"
   | `Symbols_For_Legacy_Computing -> "Symbols_For_Legacy_Computing"
+  | `Symbols_For_Legacy_Computing_Sup -> "Symbols_For_Legacy_Computing_Sup"
   | `Super_And_Sub -> "Super_And_Sub"
   | `Sutton_SignWriting -> "Sutton_SignWriting"
   | `Syloti_Nagri -> "Syloti_Nagri"
@@ -642,8 +660,10 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Tibetan -> "Tibetan"
   | `Tifinagh -> "Tifinagh"
   | `Tirhuta -> "Tirhuta"
+  | `Todhri -> "Todhri"
   | `Toto -> "Toto"
   | `Transport_And_Map -> "Transport_And_Map"
+  | `Tulu_Tigalari -> "Tulu_Tigalari"
   | `UCAS -> "UCAS"
   | `UCAS_Ext -> "UCAS_Ext"
   | `UCAS_Ext_A -> "UCAS_Ext_A"

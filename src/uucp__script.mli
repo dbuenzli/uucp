@@ -54,6 +54,7 @@ type t = [
   | `Elba
   | `Elym
   | `Ethi
+  | `Gara
   | `Geor
   | `Glag
   | `Gong
@@ -62,6 +63,7 @@ type t = [
   | `Gran
   | `Grek
   | `Gujr
+  | `Gukh
   | `Guru
   | `Hang
   | `Hani
@@ -83,6 +85,7 @@ type t = [
   | `Khmr
   | `Khoj
   | `Knda
+  | `Krai
   | `Kthi
   | `Kits
   | `Lana
@@ -120,6 +123,7 @@ type t = [
   | `Nshu
   | `Ogam
   | `Olck
+  | `Onao
   | `Orkh
   | `Orya
   | `Osge
@@ -152,6 +156,7 @@ type t = [
   | `Sora
   | `Soyo
   | `Sund
+  | `Sunu
   | `Sylo
   | `Syrc
   | `Tagb
@@ -169,7 +174,9 @@ type t = [
   | `Tibt
   | `Tirh
   | `Tnsa
+  | `Todr
   | `Toto
+  | `Tutg
   | `Ugar
   | `Vaii
   | `Vith
