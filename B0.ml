@@ -86,7 +86,7 @@ let show_version =
   Ok (Log.app (fun m -> m "%s" (String.of_version unicode_version)))
 
 let download_ucdxml =
-  let doc = "Download the ucdxml to supoprt/ucd.xml" in
+  let doc = "Download the ucdxml to support/ucd.xml" in
   B0_unit.of_action "download-ucdxml" ~doc @@ fun env _ ~args:_ ->
   let* unzip = B0_env.get_cmd env (Cmd.tool "unzip") in
   let version = String.of_version unicode_version in
