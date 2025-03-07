@@ -35,14 +35,14 @@ let ucd_get p ucd u = match Uucd.cp_prop ucd (Uchar.to_int u) p with
 (* Assert properties *)
 
 let prop ucd mname fname ucd_get prop =
-  Test.test (str "%s.%s" mname fname) @@ fun () ->
+  (* Not very B0_testy should be redone at some point. *)
+  (Test.test (str "%s.%s" mname fname) @@ fun () ->
   let do_assert u =
     if ucd_get ucd u = prop u then () else
     failwith (str "assertion failure on %a" uchar_dump u)
   in
   for u = 0 to 0xD7FF do do_assert (Uchar.of_int u) done;
-  for u = 0xE000 to 0x10FFFF do do_assert (Uchar.of_int u) done;
-  ()
+  for u = 0xE000 to 0x10FFFF do do_assert (Uchar.of_int u) done;) ()
 
 (* Assert modules *)
 
