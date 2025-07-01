@@ -2,7 +2,7 @@ open B0_kit.V000
 open Result.Syntax
 
 let unicode_version = 16, 0, 0, None (* Adjust on new releases *)
-let next_major = let maj, _, _, _ = unicode_version in (maj + 1), 0, 0, None
+let next_major = B0_version.next_major unicode_version
 
 (* OCaml library names *)
 
@@ -64,7 +64,7 @@ let test ?doc ?(meta = B0_meta.empty) ?run:(r = false) ?(requires = []) src =
   let srcs = [ `File src ] in
   let requires = uucp :: requires in
   let meta = B0_meta.(meta |> tag test |> add run r) in
-  let name = Fpath.basename ~strip_ext:true src in
+  let name = Fpath.basename ~strip_exts:true src in
   B0_ocaml.exe name ?doc ~srcs ~meta ~requires
 
 let test_uucp =
@@ -83,13 +83,13 @@ let uc_base = "http://www.unicode.org/Public"
 let show_version =
   B0_unit.of_action "unicode-version" ~doc:"Show supported unicode version" @@
   fun _ _ ~args:_ ->
-  Ok (Log.stdout (fun m -> m "%s" (String.of_version unicode_version)))
+  Ok (Log.stdout (fun m -> m "%s" (B0_version.to_string unicode_version)))
 
 let download_ucdxml =
   let doc = "Download the ucdxml to support/ucd.xml" in
   B0_unit.of_action "download-ucdxml" ~doc @@ fun env _ ~args:_ ->
   let* unzip = B0_env.get_cmd env (Cmd.tool "unzip") in
-  let version = String.of_version unicode_version in
+  let version = B0_version.to_string unicode_version in
   let ucd_url = Fmt.str "%s/%s/ucdxml/ucd.all.grouped.zip" uc_base version in
   let ucd_file = B0_env.in_scope_dir env ~/"support/ucd.xml" in
   Result.join @@ Os.File.with_tmp_fd @@ fun tmpfile tmpfd ->
@@ -102,8 +102,8 @@ let download_ucdxml =
 (* Packs *)
 
 let default =
-  let unicode_version = String.of_version unicode_version in
-  let next_major = String.of_version next_major in
+  let unicode_version = B0_version.to_string unicode_version in
+  let next_major = B0_version.to_string next_major in
   let meta =
     B0_meta.empty
     |> ~~ B0_meta.authors ["The uucp programmers"]
