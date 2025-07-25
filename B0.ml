@@ -128,7 +128,7 @@ let default =
       [ "ocaml", {|>= "4.14.0"|};
         "ocamlfind", {|build|};
         "ocamlbuild", {|build|};
-        "topkg", {|build & >= "1.0.3"|};
+        "topkg", {|build & >= "1.1.0"|};
         "uucd", Fmt.str {|with-test dev & >= "%s" & < "%s"|}
           unicode_version next_major;
         "uunf", {|with-test|} ]
