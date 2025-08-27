@@ -31,6 +31,7 @@ type t = [
   | `Bassa_Vah
   | `Batak
   | `Bengali
+  | `Beria_Erfe
   | `Bhaiksuki
   | `Block_Elements
   | `Bopomofo
@@ -55,6 +56,7 @@ type t = [
   | `CJK_Ext_G
   | `CJK_Ext_H
   | `CJK_Ext_I
+  | `CJK_Ext_J
   | `CJK_Radicals_Sup
   | `CJK_Strokes
   | `CJK_Symbols
@@ -209,6 +211,7 @@ type t = [
   | `Misc_Math_Symbols_B
   | `Misc_Pictographs
   | `Misc_Symbols
+  | `Misc_Symbols_Sup
   | `Misc_Technical
   | `Modi
   | `Modifier_Letters
@@ -268,9 +271,11 @@ type t = [
   | `Samaritan
   | `Saurashtra
   | `Sharada
+  | `Sharada_Sup
   | `Shavian
   | `Shorthand_Format_Controls
   | `Siddham
+  | `Sidetic
   | `Sinhala
   | `Sinhala_Archaic_Numbers
   | `Small_Forms
@@ -305,12 +310,14 @@ type t = [
   | `Tai_Tham
   | `Tai_Viet
   | `Tai_Xuan_Jing
+  | `Tai_Yo
   | `Takri
   | `Tamil
   | `Tamil_Sup
   | `Tangsa
   | `Tangut
   | `Tangut_Components
+  | `Tangut_Components_Sup
   | `Tangut_Sup
   | `Telugu
   | `Thaana
@@ -319,6 +326,7 @@ type t = [
   | `Tifinagh
   | `Tirhuta
   | `Todhri
+  | `Tolong_Siki
   | `Toto
   | `Transport_And_Map
   | `Tulu_Tigalari
@@ -370,6 +378,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Bassa_Vah -> "Bassa_Vah"
   | `Batak -> "Batak"
   | `Bengali -> "Bengali"
+  | `Beria_Erfe -> "Beria_Erfe"
   | `Bhaiksuki -> "Bhaiksuki"
   | `Block_Elements -> "Block_Elements"
   | `Bopomofo -> "Bopomofo"
@@ -394,6 +403,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `CJK_Ext_G -> "CJK_Ext_G"
   | `CJK_Ext_H -> "CJK_Ext_H"
   | `CJK_Ext_I -> "CJK_Ext_I"
+  | `CJK_Ext_J -> "CJK_Ext_J"
   | `CJK_Radicals_Sup -> "CJK_Radicals_Sup"
   | `CJK_Strokes -> "CJK_Strokes"
   | `CJK_Symbols -> "CJK_Symbols"
@@ -551,6 +561,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Misc_Math_Symbols_B -> "Misc_Math_Symbols_B"
   | `Misc_Pictographs -> "Misc_Pictographs"
   | `Misc_Symbols -> "Misc_Symbols"
+  | `Misc_Symbols_Sup -> "Misc_Symbols_Sup"
   | `Misc_Technical -> "Misc_Technical"
   | `Modi -> "Modi"
   | `Modifier_Letters -> "Modifier_Letters"
@@ -610,9 +621,11 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Samaritan -> "Samaritan"
   | `Saurashtra -> "Saurashtra"
   | `Sharada -> "Sharada"
+  | `Sharada_Sup -> "Sharada_Sup"
   | `Shavian -> "Shavian"
   | `Shorthand_Format_Controls -> "Shorthand_Format_Controls"
   | `Siddham -> "Siddham"
+  | `Sidetic -> "Sidetic"
   | `Sinhala -> "Sinhala"
   | `Sinhala_Archaic_Numbers -> "Sinhala_Archaic_Numbers"
   | `Small_Forms -> "Small_Forms"
@@ -647,12 +660,14 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Tai_Tham -> "Tai_Tham"
   | `Tai_Viet -> "Tai_Viet"
   | `Tai_Xuan_Jing -> "Tai_Xuan_Jing"
+  | `Tai_Yo -> "Tai_Yo"
   | `Takri -> "Takri"
   | `Tamil -> "Tamil"
   | `Tamil_Sup -> "Tamil_Sup"
   | `Tangsa -> "Tangsa"
   | `Tangut -> "Tangut"
   | `Tangut_Components -> "Tangut_Components"
+  | `Tangut_Components_Sup -> "Tangut_Components_Sup"
   | `Tangut_Sup -> "Tangut_Sup"
   | `Telugu -> "Telugu"
   | `Thaana -> "Thaana"
@@ -661,6 +676,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Tifinagh -> "Tifinagh"
   | `Tirhuta -> "Tirhuta"
   | `Todhri -> "Todhri"
+  | `Tolong_Siki -> "Tolong_Siki"
   | `Toto -> "Toto"
   | `Transport_And_Map -> "Transport_And_Map"
   | `Tulu_Tigalari -> "Tulu_Tigalari"

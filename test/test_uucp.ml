@@ -10,7 +10,6 @@ open B0_testing
 let str = Format.asprintf
 let exec = Filename.basename Sys.executable_name
 
-
 let uchar_dump ppf u = Format.fprintf ppf "U+%04X" (Uchar.to_int u)
 
 (* UCD loading and access *)

@@ -16,6 +16,7 @@ type t = [
   | `Bass
   | `Batk
   | `Beng
+  | `Berf
   | `Bhks
   | `Bopo
   | `Brah
@@ -136,6 +137,7 @@ type t = [
   | `Shaw
   | `Shrd
   | `Sidd
+  | `Sidt
   | `Sind
   | `Sinh
   | `Sogd
@@ -153,6 +155,7 @@ type t = [
   | `Taml
   | `Tang
   | `Tavt
+  | `Tayo
   | `Telu
   | `Tfng
   | `Tglg
@@ -162,6 +165,7 @@ type t = [
   | `Tirh
   | `Tnsa
   | `Todr
+  | `Tols
   | `Toto
   | `Tutg
   | `Ugar
@@ -192,6 +196,7 @@ let pp ppf s = Format.fprintf ppf "%s" begin match s with
   | `Bass -> "Bass"
   | `Batk -> "Batk"
   | `Beng -> "Beng"
+  | `Berf -> "Berf"
   | `Bhks -> "Bhks"
   | `Bopo -> "Bopo"
   | `Brah -> "Brah"
@@ -312,6 +317,7 @@ let pp ppf s = Format.fprintf ppf "%s" begin match s with
   | `Shaw -> "Shaw"
   | `Shrd -> "Shrd"
   | `Sidd -> "Sidd"
+  | `Sidt -> "Sidt"
   | `Sind -> "Sind"
   | `Sinh -> "Sinh"
   | `Sogd -> "Sogd"
@@ -329,6 +335,7 @@ let pp ppf s = Format.fprintf ppf "%s" begin match s with
   | `Taml -> "Taml"
   | `Tang -> "Tang"
   | `Tavt -> "Tavt"
+  | `Tayo -> "Tayo"
   | `Telu -> "Telu"
   | `Tfng -> "Tfng"
   | `Tglg -> "Tglg"
@@ -338,6 +345,7 @@ let pp ppf s = Format.fprintf ppf "%s" begin match s with
   | `Tirh -> "Tirh"
   | `Tnsa -> "Tnsa"
   | `Todr -> "Todr"
+  | `Tols -> "Tols"
   | `Toto -> "Toto"
   | `Tutg -> "Tutg"
   | `Ugar -> "Ugar"

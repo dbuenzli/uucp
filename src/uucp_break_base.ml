@@ -7,13 +7,13 @@
 
 type line =
   [ `AI | `AK | `AL | `AP | `AS | `B2 | `BA | `BB | `BK | `CB | `CJ | `CL
-  | `CM | `CP | `CR | `EX | `EB | `EM | `GL | `H2 | `H3 | `HL | `HY | `ID
+  | `CM | `CP | `CR | `EX | `EB | `EM | `GL | `H2 | `H3 | `HH | `HL | `HY | `ID
   | `IN | `IS | `JL | `JT | `JV | `LF | `NL | `NS | `NU | `OP | `PO | `PR
   | `QU | `RI | `SA | `SG | `SP | `SY | `VF | `VI | `WJ | `XX | `ZW | `ZWJ ]
 
 let line_of_byte : line array =
   [| `AI; `AK; `AL; `AP; `AS; `B2; `BA; `BB; `BK; `CB; `CJ; `CL;
-     `CM; `CP; `CR; `EX; `EB; `EM; `GL; `H2; `H3; `HL; `HY; `ID;
+     `CM; `CP; `CR; `EX; `EB; `EM; `GL; `H2; `H3; `HH; `HL; `HY; `ID;
      `IN; `IS; `JL; `JT; `JV; `LF; `NL; `NS; `NU; `OP; `PO; `PR;
      `QU; `RI; `SA; `SG; `SP; `SY; `VF; `VI; `WJ; `XX; `ZW; `ZWJ |]
 
@@ -23,23 +23,24 @@ let line_to_byte = function
 | `AI -> 0 | `AK -> 1 | `AL -> 2 | `AP -> 3 | `AS -> 4 | `B2 -> 5
 | `BA -> 6 | `BB -> 7 | `BK -> 8 | `CB -> 9 | `CJ -> 10 | `CL -> 11
 | `CM -> 12 | `CP -> 13 | `CR -> 14 | `EX -> 15 | `EB -> 16 | `EM -> 17
-| `GL -> 18 | `H2 -> 19 | `H3 -> 20 | `HL -> 21 | `HY -> 22 | `ID -> 23
-| `IN -> 24 | `IS -> 25 | `JL -> 26 | `JT -> 27 | `JV -> 28 | `LF -> 29
-| `NL -> 30 | `NS -> 31 | `NU -> 32 | `OP -> 33 | `PO -> 34 | `PR -> 35
-| `QU -> 36 | `RI -> 37 | `SA -> 38 | `SG -> 39 | `SP -> 40 | `SY -> 41
-| `VF -> 42 | `VI -> 43 | `WJ -> 44 | `XX -> 45 | `ZW -> 46 | `ZWJ -> 47
+| `GL -> 18 | `H2 -> 19 | `H3 -> 20 | `HH -> 21 | `HL -> 22 | `HY -> 23
+| `ID -> 24 | `IN -> 25 | `IS -> 26 | `JL -> 27 | `JT -> 28 | `JV -> 29
+| `LF -> 30 | `NL -> 31 | `NS -> 32 | `NU -> 33 | `OP -> 34 | `PO -> 35
+| `PR -> 36 | `QU -> 37 | `RI -> 38 | `SA -> 39 | `SG -> 40 | `SP -> 41
+| `SY -> 42 | `VF -> 43 | `VI -> 44 | `WJ -> 45 | `XX -> 46 | `ZW -> 47
+| `ZWJ -> 48
 
 let pp_line ppf v = Format.fprintf ppf "%s" begin match v with
   | `AI -> "AI" | `AK -> "AK" | `AL -> "AL" | `AP -> "AP" | `AS -> "AS"
   | `B2 -> "B2" | `BA -> "BA" | `BB -> "BB" | `BK -> "BK" | `CB -> "CB"
   | `CJ -> "CJ" | `CL -> "CL" | `CM -> "CM" | `CP -> "CP" | `CR -> "CR"
   | `EX -> "EX" | `EB -> "EB" | `EM -> "EM" | `GL -> "GL" | `H2 -> "H2"
-  | `H3 -> "H3" | `HL -> "HL" | `HY -> "HY" | `ID -> "ID" | `IN -> "IN"
-  | `IS -> "IS" | `JL -> "JL" | `JT -> "JT" | `JV -> "JV" | `LF -> "LF"
-  | `NL -> "NL" | `NS -> "NS" | `NU -> "NU" | `OP -> "OP" | `PO -> "PO"
-  | `PR -> "PR" | `QU -> "QU" | `RI -> "RI" | `SA -> "SA" | `SG -> "SG"
-  | `SP -> "SP" | `SY -> "SY" | `VF -> "VF" | `VI -> "VI" | `WJ -> "WJ"
-  | `XX -> "XX" | `ZW -> "ZW" | `ZWJ -> "ZWJ"
+  | `H3 -> "H3" | `HH -> "HH" | `HL -> "HL" | `HY -> "HY" | `ID -> "ID"
+  | `IN -> "IN" | `IS -> "IS" | `JL -> "JL" | `JT -> "JT" | `JV -> "JV"
+  | `LF -> "LF" | `NL -> "NL" | `NS -> "NS" | `NU -> "NU" | `OP -> "OP"
+  | `PO -> "PO" | `PR -> "PR" | `QU -> "QU" | `RI -> "RI" | `SA -> "SA"
+  | `SG -> "SG" | `SP -> "SP" | `SY -> "SY" | `VF -> "VF" | `VI -> "VI"
+  | `WJ -> "WJ" | `XX -> "XX" | `ZW -> "ZW" | `ZWJ -> "ZWJ"
   end
 
 (* Grapheme cluster break *)

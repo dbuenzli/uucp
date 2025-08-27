@@ -1,5 +1,5 @@
 (*---------------------------------------------------------------------------
-   Copyright (c) 2024 The uucp programmers. All rights reserved.
+   Copyright (c) 2025 The uucp programmers. All rights reserved.
    SPDX-License-Identifier: ISC
   ---------------------------------------------------------------------------*)
 
@@ -894,8 +894,9 @@ let fold_map_map : Uchar.t list t =
            [Uchar.unsafe_of_int 0x1D8E;]; [Uchar.unsafe_of_int 0xA7C8;]; 
            []; [Uchar.unsafe_of_int 0xA7CA;]; [];
            [Uchar.unsafe_of_int 0x0264;]; [Uchar.unsafe_of_int 0xA7CD;]; 
-           []; []; []|];
-         [|[Uchar.unsafe_of_int 0xA7D1;]; []; []; []; []; [];
+           []; [Uchar.unsafe_of_int 0xA7CF;]; []|];
+         [|[Uchar.unsafe_of_int 0xA7D1;]; []; [Uchar.unsafe_of_int 0xA7D3;];
+           []; [Uchar.unsafe_of_int 0xA7D5;]; [];
            [Uchar.unsafe_of_int 0xA7D7;]; []; [Uchar.unsafe_of_int 0xA7D9;];
            []; [Uchar.unsafe_of_int 0xA7DB;]; [];
            [Uchar.unsafe_of_int 0x019B;]; []; []; []|];
@@ -1196,8 +1197,22 @@ let fold_map_map : Uchar.t list t =
            [Uchar.unsafe_of_int 0x16E7A;]; [Uchar.unsafe_of_int 0x16E7B;];
            [Uchar.unsafe_of_int 0x16E7C;]; [Uchar.unsafe_of_int 0x16E7D;];
            [Uchar.unsafe_of_int 0x16E7E;]; [Uchar.unsafe_of_int 0x16E7F;]|];
+         nil; nil; nil; nil;
+         [|[Uchar.unsafe_of_int 0x16EBB;]; [Uchar.unsafe_of_int 0x16EBC;];
+           [Uchar.unsafe_of_int 0x16EBD;]; [Uchar.unsafe_of_int 0x16EBE;];
+           [Uchar.unsafe_of_int 0x16EBF;]; [Uchar.unsafe_of_int 0x16EC0;];
+           [Uchar.unsafe_of_int 0x16EC1;]; [Uchar.unsafe_of_int 0x16EC2;];
+           [Uchar.unsafe_of_int 0x16EC3;]; [Uchar.unsafe_of_int 0x16EC4;];
+           [Uchar.unsafe_of_int 0x16EC5;]; [Uchar.unsafe_of_int 0x16EC6;];
+           [Uchar.unsafe_of_int 0x16EC7;]; [Uchar.unsafe_of_int 0x16EC8;];
+           [Uchar.unsafe_of_int 0x16EC9;]; [Uchar.unsafe_of_int 0x16ECA;]|];
+         [|[Uchar.unsafe_of_int 0x16ECB;]; [Uchar.unsafe_of_int 0x16ECC;];
+           [Uchar.unsafe_of_int 0x16ECD;]; [Uchar.unsafe_of_int 0x16ECE;];
+           [Uchar.unsafe_of_int 0x16ECF;]; [Uchar.unsafe_of_int 0x16ED0;];
+           [Uchar.unsafe_of_int 0x16ED1;]; [Uchar.unsafe_of_int 0x16ED2;];
+           [Uchar.unsafe_of_int 0x16ED3;]; []; []; []; []; []; []; []|];
          nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
-         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil|];
+         nil; nil; nil; nil; nil; nil; nil|];
        nil; nil; nil; nil; nil; nil; nil;
        [|nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
          nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;

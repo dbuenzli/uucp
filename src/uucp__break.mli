@@ -25,7 +25,7 @@
 
 type line =
   [ `AI | `AK | `AL | `AP | `AS | `B2 | `BA | `BB | `BK | `CB | `CJ | `CL
-  | `CM | `CP | `CR | `EX | `EB | `EM | `GL | `H2 | `H3 | `HL | `HY | `ID
+  | `CM | `CP | `CR | `EX | `EB | `EM | `GL | `H2 | `H3 | `HH | `HL | `HY | `ID
   | `IN | `IS | `JL | `JT | `JV | `LF | `NL | `NS | `NU | `OP | `PO | `PR
   | `QU | `RI | `SA | `SG | `SP | `SY | `VF | `VI | `WJ | `XX | `ZW | `ZWJ ]
 (** The type for line breaks. *)

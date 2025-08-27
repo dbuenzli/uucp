@@ -29,6 +29,7 @@ type t = [
   | `Bass
   | `Batk
   | `Beng
+  | `Berf
   | `Bhks
   | `Bopo
   | `Brah
@@ -149,6 +150,7 @@ type t = [
   | `Shaw
   | `Shrd
   | `Sidd
+  | `Sidt
   | `Sind
   | `Sinh
   | `Sogd
@@ -166,6 +168,7 @@ type t = [
   | `Taml
   | `Tang
   | `Tavt
+  | `Tayo
   | `Telu
   | `Tfng
   | `Tglg
@@ -175,6 +178,7 @@ type t = [
   | `Tirh
   | `Tnsa
   | `Todr
+  | `Tols
   | `Toto
   | `Tutg
   | `Ugar

@@ -1,5 +1,5 @@
 (*---------------------------------------------------------------------------
-   Copyright (c) 2024 The uucp programmers. All rights reserved.
+   Copyright (c) 2025 The uucp programmers. All rights reserved.
    SPDX-License-Identifier: ISC
   ---------------------------------------------------------------------------*)
 
@@ -3398,14 +3398,18 @@ let nfkc_simple_fold_map_map : [ `Self | `Uchars of Uchar.t list ] t =
            (`Uchars [Uchar.unsafe_of_int 0xA7C8;]); `Self;
            (`Uchars [Uchar.unsafe_of_int 0xA7CA;]); `Self;
            (`Uchars [Uchar.unsafe_of_int 0x0264;]);
-           (`Uchars [Uchar.unsafe_of_int 0xA7CD;]); `Self; `Self; `Self|];
-         [|(`Uchars [Uchar.unsafe_of_int 0xA7D1;]); `Self; `Self; `Self;
-           `Self; `Self; (`Uchars [Uchar.unsafe_of_int 0xA7D7;]); `Self;
+           (`Uchars [Uchar.unsafe_of_int 0xA7CD;]); `Self;
+           (`Uchars [Uchar.unsafe_of_int 0xA7CF;]); `Self|];
+         [|(`Uchars [Uchar.unsafe_of_int 0xA7D1;]); `Self;
+           (`Uchars [Uchar.unsafe_of_int 0xA7D3;]); `Self;
+           (`Uchars [Uchar.unsafe_of_int 0xA7D5;]); `Self;
+           (`Uchars [Uchar.unsafe_of_int 0xA7D7;]); `Self;
            (`Uchars [Uchar.unsafe_of_int 0xA7D9;]); `Self;
            (`Uchars [Uchar.unsafe_of_int 0xA7DB;]); `Self;
            (`Uchars [Uchar.unsafe_of_int 0x019B;]); `Self; `Self; `Self|];
          nil;
-         [|`Self; `Self; (`Uchars [Uchar.unsafe_of_int 0x0063;]);
+         [|`Self; (`Uchars [Uchar.unsafe_of_int 0x0073;]);
+           (`Uchars [Uchar.unsafe_of_int 0x0063;]);
            (`Uchars [Uchar.unsafe_of_int 0x0066;]);
            (`Uchars [Uchar.unsafe_of_int 0x0071;]);
            (`Uchars [Uchar.unsafe_of_int 0xA7F6;]); `Self; `Self;
@@ -5765,8 +5769,35 @@ let nfkc_simple_fold_map_map : [ `Self | `Uchars of Uchar.t list ] t =
            (`Uchars [Uchar.unsafe_of_int 0x16E7D;]);
            (`Uchars [Uchar.unsafe_of_int 0x16E7E;]);
            (`Uchars [Uchar.unsafe_of_int 0x16E7F;])|];
+         nil; nil; nil; nil;
+         [|(`Uchars [Uchar.unsafe_of_int 0x16EBB;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EBC;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EBD;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EBE;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EBF;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EC0;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EC1;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EC2;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EC3;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EC4;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EC5;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EC6;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EC7;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EC8;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16EC9;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16ECA;])|];
+         [|(`Uchars [Uchar.unsafe_of_int 0x16ECB;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16ECC;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16ECD;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16ECE;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16ECF;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16ED0;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16ED1;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16ED2;]);
+           (`Uchars [Uchar.unsafe_of_int 0x16ED3;]); `Self; `Self; `Self;
+           `Self; `Self; `Self; `Self|];
          nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
-         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil|];
+         nil; nil; nil; nil; nil; nil; nil|];
        nil; nil; nil; nil;
        [|nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
          nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;

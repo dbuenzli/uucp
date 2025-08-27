@@ -18,7 +18,7 @@ to the `support/ucd.xml` file which is ignored by git. If you have
 
     b0 -- download-ucdxml
 
-You can now proceed to generate the `src/uunf_data.ml` and update the opam file
+You can now proceed to generate the `src/uucd_*_data.ml` and update the opam 
 file by issuing:
 
     b0 -- generate-data

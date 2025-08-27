@@ -40,6 +40,7 @@ type t = [
   | `Bassa_Vah
   | `Batak
   | `Bengali
+  | `Beria_Erfe
   | `Bhaiksuki
   | `Block_Elements
   | `Bopomofo
@@ -64,6 +65,7 @@ type t = [
   | `CJK_Ext_G
   | `CJK_Ext_H
   | `CJK_Ext_I
+  | `CJK_Ext_J
   | `CJK_Radicals_Sup
   | `CJK_Strokes
   | `CJK_Symbols
@@ -218,6 +220,7 @@ type t = [
   | `Misc_Math_Symbols_B
   | `Misc_Pictographs
   | `Misc_Symbols
+  | `Misc_Symbols_Sup
   | `Misc_Technical
   | `Modi
   | `Modifier_Letters
@@ -277,9 +280,11 @@ type t = [
   | `Samaritan
   | `Saurashtra
   | `Sharada
+  | `Sharada_Sup
   | `Shavian
   | `Shorthand_Format_Controls
   | `Siddham
+  | `Sidetic
   | `Sinhala
   | `Sinhala_Archaic_Numbers
   | `Small_Forms
@@ -314,12 +319,14 @@ type t = [
   | `Tai_Tham
   | `Tai_Viet
   | `Tai_Xuan_Jing
+  | `Tai_Yo
   | `Takri
   | `Tamil
   | `Tamil_Sup
   | `Tangsa
   | `Tangut
   | `Tangut_Components
+  | `Tangut_Components_Sup
   | `Tangut_Sup
   | `Telugu
   | `Thaana
@@ -328,6 +335,7 @@ type t = [
   | `Tifinagh
   | `Tirhuta
   | `Todhri
+  | `Tolong_Siki
   | `Toto
   | `Transport_And_Map
   | `Tulu_Tigalari
