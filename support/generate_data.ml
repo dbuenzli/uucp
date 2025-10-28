@@ -9,7 +9,7 @@ let str = Format.sprintf
 let exec = Filename.basename Sys.executable_name
 
 let ucd_or_die inf = try
-  let ic = if inf = "-" then stdin else open_in inf in
+  let ic = if inf = "-" then stdin else open_in_bin inf in
   let d = Uucd.decoder (`Channel ic) in
   match Uucd.decode d with
   | `Ok db -> db
@@ -29,7 +29,7 @@ let process
   | `Default _ when not use_default  -> ()
   | `Default fn | `Set fn ->
       try
-        let oc = if fn = "-" then stdout else open_out fn in
+        let oc = if fn = "-" then stdout else open_out_bin fn in
         try
           let ppf = Format.formatter_of_out_channel oc in
           pp ppf ucd;
