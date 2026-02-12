@@ -16,7 +16,7 @@ let uchar_dump ppf u = Format.fprintf ppf "U+%04X" (Uchar.to_int u)
 
 let load_ucd inf =
   try
-    Test.log "Loading Unicode character database.";
+    Test.Log.msg "Loading Unicode character database.";
     let inf = match inf with None -> "support/ucd.xml" | Some inf -> inf in
     let ic = if inf = "-" then stdin else open_in inf in
     let d = Uucd.decoder (`Channel ic) in
