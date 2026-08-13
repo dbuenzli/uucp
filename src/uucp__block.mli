@@ -31,6 +31,7 @@ type t = [
   | `Arabic_PF_A
   | `Arabic_PF_B
   | `Arabic_Sup
+  | `Archaic_Cuneiform_Numerals
   | `Armenian
   | `Arrows
   | `Avestan
@@ -40,6 +41,7 @@ type t = [
   | `Bassa_Vah
   | `Batak
   | `Bengali
+  | `Bengali_Sup
   | `Beria_Erfe
   | `Bhaiksuki
   | `Block_Elements
@@ -76,6 +78,7 @@ type t = [
   | `Cherokee
   | `Cherokee_Sup
   | `Chess_Symbols
+  | `Chisoi
   | `Chorasmian
   | `Compat_Jamo
   | `Control_Pictures
@@ -158,6 +161,8 @@ type t = [
   | `Jamo_Ext_A
   | `Jamo_Ext_B
   | `Javanese
+  | `Jurchen
+  | `Jurchen_Radicals
   | `Kaithi
   | `Kaktovik_Numerals
   | `Kana_Ext_A
@@ -216,6 +221,7 @@ type t = [
   | `Meroitic_Hieroglyphs
   | `Miao
   | `Misc_Arrows
+  | `Misc_Arrows_Ext
   | `Misc_Math_Symbols_A
   | `Misc_Math_Symbols_B
   | `Misc_Pictographs
@@ -230,6 +236,7 @@ type t = [
   | `Mro
   | `Multani
   | `Music
+  | `Music_Sup
   | `Myanmar
   | `Myanmar_Ext_A
   | `Myanmar_Ext_B
@@ -279,6 +286,7 @@ type t = [
   | `Runic
   | `Samaritan
   | `Saurashtra
+  | `Seal
   | `Sharada
   | `Sharada_Sup
   | `Shavian

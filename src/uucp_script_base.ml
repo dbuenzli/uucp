@@ -28,6 +28,7 @@ type t = [
   | `Cari
   | `Cham
   | `Cher
+  | `Chis
   | `Chrs
   | `Copt
   | `Cpmn
@@ -66,6 +67,7 @@ type t = [
   | `Hung
   | `Ital
   | `Java
+  | `Jurc
   | `Kali
   | `Kana
   | `Kawi
@@ -119,6 +121,7 @@ type t = [
   | `Ougr
   | `Palm
   | `Pauc
+  | `Pcun
   | `Perm
   | `Phag
   | `Phli
@@ -133,6 +136,7 @@ type t = [
   | `Samr
   | `Sarb
   | `Saur
+  | `Seal
   | `Sgnw
   | `Shaw
   | `Shrd
@@ -208,6 +212,7 @@ let pp ppf s = Format.fprintf ppf "%s" begin match s with
   | `Cari -> "Cari"
   | `Cham -> "Cham"
   | `Cher -> "Cher"
+  | `Chis -> "Chis"
   | `Chrs -> "Chrs"
   | `Copt -> "Copt"
   | `Cpmn -> "Cpmn"
@@ -246,6 +251,7 @@ let pp ppf s = Format.fprintf ppf "%s" begin match s with
   | `Hung -> "Hung"
   | `Ital -> "Ital"
   | `Java -> "Java"
+  | `Jurc -> "Jurc"
   | `Kali -> "Kali"
   | `Kana -> "Kana"
   | `Kawi -> "Kawi"
@@ -299,6 +305,7 @@ let pp ppf s = Format.fprintf ppf "%s" begin match s with
   | `Ougr -> "Ougr"
   | `Palm -> "Palm"
   | `Pauc -> "Pauc"
+  | `Pcun -> "Pcun"
   | `Perm -> "Perm"
   | `Phag -> "Phag"
   | `Phli -> "Phli"
@@ -313,6 +320,7 @@ let pp ppf s = Format.fprintf ppf "%s" begin match s with
   | `Samr -> "Samr"
   | `Sarb -> "Sarb"
   | `Saur -> "Saur"
+  | `Seal -> "Seal"
   | `Sgnw -> "Sgnw"
   | `Shaw -> "Shaw"
   | `Shrd -> "Shrd"

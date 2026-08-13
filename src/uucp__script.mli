@@ -41,6 +41,7 @@ type t = [
   | `Cari
   | `Cham
   | `Cher
+  | `Chis
   | `Chrs
   | `Copt
   | `Cpmn
@@ -79,6 +80,7 @@ type t = [
   | `Hung
   | `Ital
   | `Java
+  | `Jurc
   | `Kali
   | `Kana
   | `Kawi
@@ -132,6 +134,7 @@ type t = [
   | `Ougr
   | `Palm
   | `Pauc
+  | `Pcun
   | `Perm
   | `Phag
   | `Phli
@@ -146,6 +149,7 @@ type t = [
   | `Samr
   | `Sarb
   | `Saur
+  | `Seal
   | `Sgnw
   | `Shaw
   | `Shrd

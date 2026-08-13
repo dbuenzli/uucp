@@ -22,6 +22,7 @@ type t = [
   | `Arabic_PF_A
   | `Arabic_PF_B
   | `Arabic_Sup
+  | `Archaic_Cuneiform_Numerals
   | `Armenian
   | `Arrows
   | `Avestan
@@ -31,6 +32,7 @@ type t = [
   | `Bassa_Vah
   | `Batak
   | `Bengali
+  | `Bengali_Sup
   | `Beria_Erfe
   | `Bhaiksuki
   | `Block_Elements
@@ -67,6 +69,7 @@ type t = [
   | `Cherokee
   | `Cherokee_Sup
   | `Chess_Symbols
+  | `Chisoi
   | `Chorasmian
   | `Compat_Jamo
   | `Control_Pictures
@@ -149,6 +152,8 @@ type t = [
   | `Jamo_Ext_A
   | `Jamo_Ext_B
   | `Javanese
+  | `Jurchen
+  | `Jurchen_Radicals
   | `Kaithi
   | `Kaktovik_Numerals
   | `Kana_Ext_A
@@ -207,6 +212,7 @@ type t = [
   | `Meroitic_Hieroglyphs
   | `Miao
   | `Misc_Arrows
+  | `Misc_Arrows_Ext
   | `Misc_Math_Symbols_A
   | `Misc_Math_Symbols_B
   | `Misc_Pictographs
@@ -221,6 +227,7 @@ type t = [
   | `Mro
   | `Multani
   | `Music
+  | `Music_Sup
   | `Myanmar
   | `Myanmar_Ext_A
   | `Myanmar_Ext_B
@@ -270,6 +277,7 @@ type t = [
   | `Runic
   | `Samaritan
   | `Saurashtra
+  | `Seal
   | `Sharada
   | `Sharada_Sup
   | `Shavian
@@ -369,6 +377,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Arabic_PF_A -> "Arabic_PF_A"
   | `Arabic_PF_B -> "Arabic_PF_B"
   | `Arabic_Sup -> "Arabic_Sup"
+  | `Archaic_Cuneiform_Numerals ->  "Archaic_Cuneiform_Numerals"
   | `Armenian -> "Armenian"
   | `Arrows -> "Arrows"
   | `Avestan -> "Avestan"
@@ -378,6 +387,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Bassa_Vah -> "Bassa_Vah"
   | `Batak -> "Batak"
   | `Bengali -> "Bengali"
+  | `Bengali_Sup -> "Bengali_Sup"
   | `Beria_Erfe -> "Beria_Erfe"
   | `Bhaiksuki -> "Bhaiksuki"
   | `Block_Elements -> "Block_Elements"
@@ -414,6 +424,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Cherokee -> "Cherokee"
   | `Cherokee_Sup -> "Cherokee_Sup"
   | `Chess_Symbols -> "Chess_Symbols"
+  | `Chisoi -> "Chisoi"
   | `Chorasmian -> "Chorasmian"
   | `Compat_Jamo -> "Compat_Jamo"
   | `Control_Pictures -> "Control_Pictures"
@@ -498,6 +509,8 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Jamo_Ext_A -> "Jamo_Ext_A"
   | `Jamo_Ext_B -> "Jamo_Ext_B"
   | `Javanese -> "Javanese"
+  | `Jurchen -> "Jurchen"
+  | `Jurchen_Radicals -> "Jurchen_Radicals"
   | `Kaithi -> "Kaithi"
   | `Kaktovik_Numerals -> "Kaktovik_Numerals"
   | `Kana_Ext_A -> "Kana_Ext_A"
@@ -557,6 +570,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Meroitic_Hieroglyphs -> "Meroitic_Hieroglyphs"
   | `Miao -> "Miao"
   | `Misc_Arrows -> "Misc_Arrows"
+  | `Misc_Arrows_Ext -> "Misc_Arrows_Ext"
   | `Misc_Math_Symbols_A -> "Misc_Math_Symbols_A"
   | `Misc_Math_Symbols_B -> "Misc_Math_Symbols_B"
   | `Misc_Pictographs -> "Misc_Pictographs"
@@ -571,6 +585,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Mro -> "Mro"
   | `Multani -> "Multani"
   | `Music -> "Music"
+  | `Music_Sup -> "Music_Sup"
   | `Myanmar -> "Myanmar"
   | `Myanmar_Ext_A -> "Myanmar_Ext_A"
   | `Myanmar_Ext_B -> "Myanmar_Ext_B"
@@ -620,6 +635,7 @@ let pp ppf b = Format.fprintf ppf "%s" begin match b with
   | `Runic -> "Runic"
   | `Samaritan -> "Samaritan"
   | `Saurashtra -> "Saurashtra"
+  | `Seal -> "Seal"
   | `Sharada -> "Sharada"
   | `Sharada_Sup -> "Sharada_Sup"
   | `Shavian -> "Shavian"

@@ -19,7 +19,8 @@ to the `support/ucd.xml` file which is ignored by git. If you have
     b0 -- download-ucdxml
 
 You can now proceed to generate the `src/uucd_*_data.ml` and update the opam 
-file by issuing:
+file by issuing (there may be compilation error which you will have to fix,
+for example by adding new enumerants):
 
     b0 -- generate-data
     b0 -- .opam file > opam

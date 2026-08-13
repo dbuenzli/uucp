@@ -1,5 +1,5 @@
 (*---------------------------------------------------------------------------
-   Copyright (c) 2025 The uucp programmers. All rights reserved.
+   Copyright (c) 2026 The uucp programmers. All rights reserved.
    SPDX-License-Identifier: ISC
   ---------------------------------------------------------------------------*)
 
@@ -899,15 +899,20 @@ let fold_map_map : Uchar.t list t =
            []; [Uchar.unsafe_of_int 0xA7D5;]; [];
            [Uchar.unsafe_of_int 0xA7D7;]; []; [Uchar.unsafe_of_int 0xA7D9;];
            []; [Uchar.unsafe_of_int 0xA7DB;]; [];
-           [Uchar.unsafe_of_int 0x019B;]; []; []; []|];
-         nil;
+           [Uchar.unsafe_of_int 0x019B;]; [Uchar.unsafe_of_int 0x0277;]; 
+           []; []|];
+         [|[]; []; [Uchar.unsafe_of_int 0x027C;]; []; []; []; []; []; 
+           []; []; []; []; []; []; []; []|];
          [|[]; []; []; []; []; [Uchar.unsafe_of_int 0xA7F6;]; []; []; 
            []; []; []; []; []; []; []; []|];
          nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
          nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
          nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
          nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
-         nil; nil; nil;
+         nil; nil;
+         [|[]; []; []; []; []; []; []; []; []; []; []; [];
+           [Uchar.unsafe_of_int 0xAB4B;]; [Uchar.unsafe_of_int 0xAB4C;]; 
+           []; []|];
          [|[Uchar.unsafe_of_int 0x13A0;]; [Uchar.unsafe_of_int 0x13A1;];
            [Uchar.unsafe_of_int 0x13A2;]; [Uchar.unsafe_of_int 0x13A3;];
            [Uchar.unsafe_of_int 0x13A4;]; [Uchar.unsafe_of_int 0x13A5;];
@@ -1213,7 +1218,48 @@ let fold_map_map : Uchar.t list t =
            [Uchar.unsafe_of_int 0x16ED3;]; []; []; []; []; []; []; []|];
          nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
          nil; nil; nil; nil; nil; nil; nil|];
-       nil; nil; nil; nil; nil; nil; nil;
+       nil; nil; nil; nil; nil; nil;
+       [|nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
+         [|[Uchar.unsafe_of_int 0x1DF41;]; []; []; []; []; []; []; [];
+           [Uchar.unsafe_of_int 0x1DF49;]; [];
+           [Uchar.unsafe_of_int 0x1DF4B;]; []; [];
+           [Uchar.unsafe_of_int 0x1DF4E;]; []; []|];
+         [|[]; [Uchar.unsafe_of_int 0x1DF52;]; []; []; []; []; []; []; 
+           []; []; []; []; []; []; []; []|];
+         [|[]; []; []; []; []; []; []; []; [Uchar.unsafe_of_int 0x1DF69;];
+           []; [Uchar.unsafe_of_int 0x1DF6B;]; [];
+           [Uchar.unsafe_of_int 0x1DF6D;]; [];
+           [Uchar.unsafe_of_int 0x1DF6F;]; []|];
+         [|[]; []; [Uchar.unsafe_of_int 0x1DF73;]; [];
+           [Uchar.unsafe_of_int 0x1DF75;]; [];
+           [Uchar.unsafe_of_int 0x1DF77;]; [];
+           [Uchar.unsafe_of_int 0x1DF79;]; [];
+           [Uchar.unsafe_of_int 0x1DF7B;]; [];
+           [Uchar.unsafe_of_int 0x1DF7D;]; [];
+           [Uchar.unsafe_of_int 0x1DF7F;]; []|];
+         nil;
+         [|[]; []; []; []; [];
+           [Uchar.unsafe_of_int 0x0073;Uchar.unsafe_of_int 0x0073;]; 
+           []; []; []; []; []; []; []; []; []; []|];
+         nil; nil; nil; nil; nil; nil|];
        [|nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
          nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
          nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil; nil;
