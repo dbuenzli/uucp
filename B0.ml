@@ -64,7 +64,7 @@ let test ?doc ?(meta = B0_meta.empty) ?run:(r = false) ?(requires = []) src =
   let srcs = [ `File src ] in
   let requires = uucp :: requires in
   let meta = B0_meta.(meta |> tag test |> add run r) in
-  let name = Fpath.basename ~drop_exts:true src in
+  let name = Filepath.basename ~drop_exts:true src in
   B0_ocaml.exe name ?doc ~srcs ~meta ~requires
 
 let test_uucp =
@@ -94,7 +94,7 @@ let download_ucdxml =
   let ucd_file = B0_env.in_scope_dir env ~/"support/ucd.xml" in
   Result.join @@ Os.File.with_tmp_fd @@ fun dst tmpfd ->
   (Log.stdout @@ fun m ->
-   m "@[<v>Downloading %s@,to %a@]" ucd_url Fpath.pp ucd_file);
+   m "@[<v>Downloading %s@,to %a@]" ucd_url Filepath.pp ucd_file);
   let force = true and make_path = false in
   let* () = B0_action_kit.download_url env ~force ~make_path ucd_url ~dst in
   let stdout = Os.Cmd.out_file ~force:true ~make_path:true ucd_file in
